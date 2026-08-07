@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Abu Ubaeda — Portfolio</title>
+
+  <!-- Google Fonts: Cinzel Decorative (hero name) + Syne (headings) + Outfit (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Syne:wght@400;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       CSS CUSTOM PROPERTIES
+       New theme: deep slate + electric teal accent (light mode)
+       ============================================================ */
+    :root {
+      --bg:        #f0f4f8;          /* cool blue-grey background   */
+      --surface:   #ffffff;
+      --surface2:  #e8edf2;          /* slightly darker card bg     */
+      --ink:       #0f1923;          /* deep navy-black text        */
+      --muted:     #5a6a7a;          /* steel-blue muted text       */
+      --accent:    #0ea5a0;          /* electric teal               */
+      --accent2:   #0d7a76;          /* deeper teal for hover       */
+      --accent-lt: #d0f0ee;          /* light teal tint             */
+      --rule:      #d4dde6;
+      --nav-bg:    rgba(240,244,248,0.93);
+      --shadow:    0 6px 24px rgba(14,165,160,0.12);
+      --shadow2:   0 2px 8px rgba(15,25,35,0.08);
+      --radius:    8px;
+      --font-head: 'Syne', sans-serif;
+      --font-name: 'Cinzel Decorative', serif; /* hero name only */
+      --font-body: 'Outfit', sans-serif;
+      --max-w:     900px;
+      --t:         0.3s ease;
+    }
+
+    /* ============================================================
+       DARK THEME — toggled via data-theme="dark" on <html>
+       Deep charcoal + vibrant teal accent
+       ============================================================ */
+    [data-theme="dark"] {
+      --bg:        #0b1117;
+      --surface:   #141c24;
+      --surface2:  #1a2430;
+      --ink:       #e8f0f8;
+      --muted:     #7a9ab0;
+      --accent:    #14c8c2;
+      --accent2:   #0ea5a0;
+      --accent-lt: #0a2a2a;
+      --rule:      #1e2e3e;
+      --nav-bg:    rgba(11,17,23,0.93);
+      --shadow:    0 6px 24px rgba(0,0,0,0.5);
+      --shadow2:   0 2px 8px rgba(0,0,0,0.4);
+    }
+
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      transition: background var(--t), color var(--t);
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ============================================================
+       NAVIGATION
+       ============================================================ */
+    nav {
+      position: sticky; top: 0; z-index: 200;
+      background: var(--nav-bg);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+      transition: background var(--t), border-color var(--t);
+    }
+
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto; padding: 0 2rem;
+      height: 58px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    /* Logo: bold geometric Syne font */
+    .nav-logo {
+      font-family: var(--font-head);
+      font-size: 1.15rem; font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      transition: color var(--t);
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-right { display: flex; align-items: center; gap: 2rem; }
+
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+
+    .nav-links a {
+      font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted);
+      position: relative; transition: color var(--t);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+      transition: width var(--t);
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* ============================================================
+       DARK MODE TOGGLE — pill switch
+       ============================================================ */
+    .theme-toggle {
+      position: relative; width: 46px; height: 24px;
+      cursor: pointer; flex-shrink: 0;
+    }
+    .theme-toggle input { opacity: 0; width: 0; height: 0; }
+
+    .toggle-track {
+      position: absolute; inset: 0;
+      background: var(--rule);
+      border-radius: 999px;
+      transition: background var(--t);
+      display: flex; align-items: center;
+      justify-content: space-between;
+      padding: 0 5px; font-size: 0.62rem; line-height: 1;
+    }
+    .toggle-track::before { content: '☀️'; }
+    .toggle-track::after  { content: '🌙'; }
+
+    .toggle-thumb {
+      position: absolute; top: 3px; left: 3px;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--accent);
+      transition: transform var(--t), background var(--t);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+    }
+    .theme-toggle input:checked ~ .toggle-thumb { transform: translateX(22px); }
+
+    /* ============================================================
+       LAYOUT CONTAINER
+       ============================================================ */
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; }
+
+    /* ============================================================
+       SECTION SHARED STYLES
+       ============================================================ */
+    section {
+      padding: 5rem 0;
+      border-bottom: 1px solid var(--rule);
+      transition: border-color var(--t);
+    }
+    section:last-of-type { border-bottom: none; }
+
+    /* Teal pill label before each section heading */
+    .section-label {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--accent-lt);
+      color: var(--accent);
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 0.3rem 0.9rem;
+      border-radius: 999px;
+      margin-bottom: 1.6rem;
+      transition: background var(--t), color var(--t);
+    }
+
+    /* Section heading */
+    .section-heading {
+      font-family: var(--font-head);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 2.4rem;
+      color: var(--ink);
+      transition: color var(--t);
+    }
+
+    /* ============================================================
+       HERO / ABOUT
+       ============================================================ */
+    #about { padding-top: 5.5rem; padding-bottom: 5rem; }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 3rem; align-items: center;
+    }
+
+    /* Animated name — Cinzel Decorative (elegant serif display) */
+    .hero-name {
+      font-family: var(--font-name);
+      font-size: clamp(1.9rem, 4.5vw, 3rem);
+      font-weight: 900;
+      letter-spacing: 0.01em;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+      /* wipe-in on load */
+      clip-path: inset(0 100% 0 0);
+      animation: revealText 0.85s cubic-bezier(0.77,0,0.18,1) 0.1s forwards;
+    }
+
+    /* Teal underline accent on last word */
+    .hero-name .accent { color: var(--accent); }
+
+    @keyframes revealText { to { clip-path: inset(0 0% 0 0); } }
+
+    .hero-role {
+      font-size: 1rem; font-weight: 500;
+      color: var(--muted); margin-bottom: 1.5rem;
+      opacity: 0; animation: fadeUp 0.6s ease 0.75s forwards;
+      transition: color var(--t);
+    }
+
+    .hero-bio {
+      font-size: 0.95rem; color: var(--muted);
+      max-width: 500px; line-height: 1.9;
+      opacity: 0; animation: fadeUp 0.6s ease 0.95s forwards;
+      transition: color var(--t);
+    }
+
+    .hero-meta {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-top: 1.8rem;
+      opacity: 0; animation: fadeUp 0.6s ease 1.1s forwards;
+    }
+
+    /* Teal-outline pill badges */
+    .badge {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-size: 0.76rem; font-weight: 500;
+      padding: 0.28rem 0.7rem;
+      border-radius: 999px;
+      transition: background var(--t), color var(--t);
+    }
+
+    .badge:hover { background: var(--accent); color: #fff; }
+
+    /* ============================================================
+       PHOTO AVATAR
+       ============================================================ */
+    .hero-photo-wrap {
+      flex-shrink: 0; display: flex;
+      flex-direction: column; align-items: center; gap: 0.6rem;
+      opacity: 0; animation: fadeUp 0.6s ease 0.5s forwards;
+    }
+
+    .hero-avatar {
+      width: 140px; height: 140px;
+      border-radius: 50%;
+      border: 3px solid var(--accent);
+      background: var(--accent-lt);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; position: relative;
+      transition: transform var(--t), box-shadow var(--t),
+                  border-color var(--t), background var(--t);
+      /* Rotating border glow on hover */
+      box-shadow: 0 0 0 0 rgba(14,165,160,0);
+    }
+
+    .hero-avatar:hover {
+      transform: scale(1.06);
+      box-shadow: 0 0 0 6px rgba(14,165,160,0.2), var(--shadow);
+    }
+
+    .avatar-monogram {
+      font-family: var(--font-head);
+      font-size: 2.8rem; font-weight: 800;
+      color: var(--accent);
+      user-select: none; pointer-events: none;
+    }
+
+    #avatar-img {
+      display: none; width: 100%; height: 100%;
+      object-fit: cover; border-radius: 50%;
+    }
+
+    .avatar-overlay {
+      position: absolute; inset: 0; border-radius: 50%;
+      background: rgba(0,0,0,0.5);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity var(--t);
+      color: #fff; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.06em; text-align: center; padding: 0.5rem;
+    }
+    .hero-avatar:hover .avatar-overlay { opacity: 1; }
+
+    .avatar-hint {
+      font-size: 0.72rem; color: var(--muted);
+      letter-spacing: 0.04em; transition: color var(--t);
+    }
+
+    #photo-input { display: none; }
+
+    /* ============================================================
+       EDUCATION
+       ============================================================ */
+    .edu-list { display: flex; flex-direction: column; }
+
+    .edu-item {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 1.5rem;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+      transition: border-color var(--t);
+    }
+    .edu-item:last-child { border-bottom: none; }
+
+    /* Teal vertical bar grows on hover */
+    .edu-item::before {
+      content: '';
+      position: absolute; left: -1.5rem; top: 50%;
+      transform: translateY(-50%);
+      width: 3px; height: 0;
+      background: var(--accent); border-radius: 2px;
+      transition: height 0.3s ease;
+    }
+    .edu-item:hover::before { height: 55%; }
+
+    .edu-year {
+      font-size: 0.76rem; font-weight: 600;
+      letter-spacing: 0.07em; color: var(--accent);
+      padding-top: 0.2rem;
+    }
+
+    .edu-name {
+      font-family: var(--font-head);
+      font-size: 1rem; font-weight: 700;
+      margin-bottom: 0.2rem;
+      transition: color var(--t);
+    }
+
+    /* Institution logo in education cards */
+    .edu-logo {
+      width: 38px; height: 38px;
+      object-fit: contain;
+      border-radius: 6px;
+      background: var(--surface2);
+      border: 1px solid var(--rule);
+      padding: 3px;
+      margin-bottom: 0.5rem;
+      display: block;
+      transition: border-color var(--t), background var(--t);
+    }
+    .edu-item:hover .edu-logo { border-color: var(--accent); }
+
+    /* Hyperlink styling for institution names */
+    .edu-name a {
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--t);
+    }
+    .edu-name a:hover { color: var(--accent); }
+
+    .edu-detail {
+      font-size: 0.85rem; color: var(--muted);
+      transition: color var(--t);
+    }
+
+    /* Graduation tag */
+    .edu-tag {
+      display: inline-block;
+      margin-top: 0.35rem;
+      background: var(--accent-lt);
+      color: var(--accent);
+      font-size: 0.7rem; font-weight: 600;
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      transition: background var(--t), color var(--t);
+    }
+
+    /* ============================================================
+       SKILLS — category grid layout
+       ============================================================ */
+    .skills-categories {
+      display: flex; flex-direction: column; gap: 2.5rem;
+    }
+
+    .skill-category-title {
+      font-family: var(--font-head);
+      font-size: 0.85rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+
+    .skill-category-title::after {
+      content: '';
+      flex: 1; height: 1px;
+      background: var(--rule);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+      gap: 1rem;
+    }
+
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.4rem;
+      transition: border-color var(--t), transform var(--t),
+                  box-shadow var(--t), background var(--t);
+      cursor: default;
+    }
+
+    .skill-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .skill-icon { font-size: 1.5rem; margin-bottom: 0.6rem; }
+
+    .skill-name {
+      font-family: var(--font-head);
+      font-size: 0.92rem; font-weight: 700;
+      margin-bottom: 0.25rem;
+      transition: color var(--t);
+    }
+
+    .skill-desc {
+      font-size: 0.78rem; color: var(--muted);
+      line-height: 1.55; transition: color var(--t);
+    }
+
+    /* ============================================================
+       LANGUAGES
+       ============================================================ */
+    .lang-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .lang-card {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      transition: border-color var(--t), transform var(--t),
+                  box-shadow var(--t), background var(--t);
+    }
+
+    .lang-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .lang-flag {
+      font-size: 2.2rem;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .lang-info { flex: 1; }
+
+    .lang-name {
+      font-family: var(--font-head);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.15rem;
+      transition: color var(--t);
+    }
+
+    .lang-level {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+      transition: color var(--t);
+    }
+
+    /* Animated proficiency bar */
+    .lang-bar {
+      width: 100%;
+      height: 5px;
+      background: var(--rule);
+      border-radius: 999px;
+      overflow: hidden;
+      transition: background var(--t);
+    }
+
+    .lang-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 999px;
+      width: 0;
+      transition: width 1.1s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* ============================================================
+       CONTACT
+       ============================================================ */
+    .contact-intro {
+      font-size: 0.95rem; color: var(--muted);
+      margin-bottom: 2.2rem; max-width: 480px;
+      transition: color var(--t);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .contact-item {
+      display: flex; align-items: flex-start; gap: 0.9rem;
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.3rem;
+      transition: border-color var(--t), transform var(--t),
+                  background var(--t), box-shadow var(--t);
+    }
+
+    .contact-item:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-icon {
+      width: 36px; height: 36px;
+      background: var(--accent-lt);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+      transition: background var(--t);
+    }
+
+    .contact-label {
+      font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.15rem;
+      transition: color var(--t);
+    }
+
+    .contact-value {
+      font-size: 0.85rem; font-weight: 500;
+      color: var(--ink); word-break: break-all;
+      transition: color var(--t);
+    }
+
+    .contact-value a { color: var(--accent); transition: opacity var(--t); }
+    .contact-value a:hover { opacity: 0.7; }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    footer {
+      padding: 2.5rem 0; text-align: center;
+      font-size: 0.8rem; color: var(--muted);
+      border-top: 1px solid var(--rule);
+      transition: border-color var(--t), color var(--t);
+    }
+    footer strong { font-weight: 600; color: var(--ink); }
+
+    /* ============================================================
+       KEYFRAMES
+       ============================================================ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ============================================================
+       SCROLL-REVEAL SYSTEM
+       Classes: .sr + direction (.sr-up / .sr-left / .sr-scale)
+       JS adds .visible to trigger the CSS transition
+       ============================================================ */
+    .sr {
+      opacity: 0;
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .sr-up    { transform: translateY(24px); }
+    .sr-left  { transform: translateX(-24px); }
+    .sr-scale { transform: scale(0.88) translateY(14px); }
+
+    .sr.visible { opacity: 1 !important; transform: none !important; }
+
+    /* Stagger delays */
+    .d1 { transition-delay: 0.07s; }
+    .d2 { transition-delay: 0.14s; }
+    .d3 { transition-delay: 0.21s; }
+    .d4 { transition-delay: 0.28s; }
+    .d5 { transition-delay: 0.35s; }
+    .d6 { transition-delay: 0.42s; }
+    .d7 { transition-delay: 0.49s; }
+    .d8 { transition-delay: 0.56s; }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 640px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-photo-wrap { order: -1; }
+      .edu-item { grid-template-columns: 80px 1fr; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 0.72rem; }
+      .nav-right { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+  <nav>
+    <div class="nav-inner">
+      <!-- Geometric bold logo with teal accent dot -->
+      <span class="nav-logo">Abu<span>.</span>Ubaeda</span>
+
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#languages">Languages</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <!-- ── DARK MODE TOGGLE ──
+             Checkbox drives CSS variable swap via data-theme on <html>.
+             JS saves the preference to localStorage. -->
+        <label class="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">
+          <input type="checkbox" id="theme-checkbox">
+          <span class="toggle-track"></span>
+          <span class="toggle-thumb"></span>
+        </label>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ============================================================
+       HERO / ABOUT
+       ============================================================ -->
+  <section id="about">
+    <div class="container">
+      <div class="hero-grid">
+
+        <!-- Left: text block -->
+        <div>
+          <div class="section-label">About Me</div>
+          <h1 class="hero-name">Abu <span class="accent">Ubaeda</span></h1>
+          <p class="hero-role">B.Sc. Engineering Student · Materials Science & Engineering</p>
+
+          <p class="hero-bio">
+            Undergraduate student at the University of Rajshahi pursuing a
+            B.Sc. in Materials Science and Engineering (2024–2028).
+            Passionate about materials processing, characterization, and
+            computational tools. Enjoy writing Python scripts and working
+            collaboratively on engineering challenges.
+          </p>
+
+          <div class="hero-meta">
+            <span class="badge">📍 Rajshahi, Bangladesh</span>
+            <span class="badge">🎓 Univ. of Rajshahi</span>
+            <span class="badge">🎯 Expected 2029</span>
+            <span class="badge">@mdabuubaeda</span>
+          </div>
+        </div>
+
+        <!-- Right: photo avatar
+             Click to open file picker → FileReader previews instantly.
+             Photo saved in localStorage so it persists on refresh. -->
+        <div class="hero-photo-wrap">
+          <input type="file" id="photo-input" accept="image/*">
+
+          <div class="hero-avatar"
+               id="avatar-circle"
+               onclick="document.getElementById('photo-input').click()"
+               title="Click to upload your photo">
+            <span class="avatar-monogram" id="avatar-monogram">AU</span>
+            <img id="avatar-img" src="profile.jpg" alt="Profile photo" onerror="this.style.display='none'" onload="this.style.display='block'; document.getElementById('avatar-monogram').style.display='none'; document.getElementById('avatar-hint').textContent='Click to change photo';">
+            <div class="avatar-overlay">📷 Upload Photo</div>
+          </div>
+
+          <span class="avatar-hint" id="avatar-hint">Click to add photo</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       EDUCATION
+       West Chila Fazil (2024) and Darunnazat Alim (2023) statuses
+       managed as per previous instructions.
+       ============================================================ -->
+  <section id="education">
+    <div class="container">
+      <div class="section-label">Education</div>
+      <h2 class="section-heading">Academic Journey</h2>
+
+      <div class="edu-list">
+
+        <!-- University of Rajshahi — CURRENT, with expected graduation -->
+        <div class="edu-item sr sr-left">
+          <span class="edu-year">2025 →</span>
+          <div>
+            <p class="edu-name"><a href="https://www.ru.ac.bd/mse/" target="_blank" rel="noopener">University of Rajshahi</a></p>
+            <p class="edu-detail">B.Sc. (Engg.) in Materials Science and Engineering</p>
+            <span class="edu-tag">🎯 Expected Graduation: 2029</span>
+          </div>
+        </div>
+
+        <!-- Darunnazat Siddiqia — Alim 2023 (re-added) -->
+        <div class="edu-item sr sr-left d1">
+          <span class="edu-year">2023</span>
+          <div>
+            <img
+              class="edu-logo"
+              src="https://dskm.ac.bd/wp-content/uploads/2022/01/cropped-dskm-logo.png"
+              alt="Darunnazat Siddikia Kamil Madrasah logo"
+              onerror="this.style.display='none'; this.onerror=null;"
+            >
+            <p class="edu-name"><a href="https://dskm.ac.bd/" target="_blank" rel="noopener">Darunnazat Siddiqia Kamil Madrasah</a></p>
+            <p class="edu-detail">Alim (Science)</p>
+          </div>
+        </div>
+
+        <!-- Darunnazat Siddiqia — Dakhil 2021 -->
+        <div class="edu-item sr sr-left d2">
+          <span class="edu-year">2021</span>
+          <div>
+            <img
+              class="edu-logo"
+              src="https://dskm.ac.bd/wp-content/uploads/2022/01/cropped-dskm-logo.png"
+              alt="Darunnazat Siddikia Kamil Madrasah logo"
+              onerror="this.style.display='none'; this.onerror=null;"
+            >
+            <p class="edu-name"><a href="https://dskm.ac.bd/" target="_blank" rel="noopener">Darunnazat Siddiqia Kamil Madrasah</a></p>
+            <p class="edu-detail">Dakhil (Science)</p>
+          </div>
+        </div>
+
+        <!-- Baitur Rasul SM -->
+        <div class="edu-item sr sr-left d3">
+          <span class="edu-year">2018</span>
+          <div>
+            <p class="edu-name">Baitur Rasul S.M.</p>
+            <p class="edu-detail">Secondary level studies</p>
+          </div>
+        </div>
+
+        <!-- Nur e Madina -->
+        <div class="edu-item sr sr-left d4">
+          <span class="edu-year">2018</span>
+          <div>
+            <p class="edu-name">Nur e Madina Madrasah, Barishal</p>
+            <p class="edu-detail">Early secondary studies</p>
+          </div>
+        </div>
+
+        <!-- West Chila Aminia — JDC -->
+        <div class="edu-item sr sr-left d5">
+          <span class="edu-year">2017</span>
+          <div>
+            <p class="edu-name">West Chila Aminia Fazil Madrasah</p>
+            <p class="edu-detail">JDC</p>
+          </div>
+        </div>
+
+        <!-- Primary -->
+        <div class="edu-item sr sr-left d6">
+          <span class="edu-year">2014</span>
+          <div>
+            <p class="edu-name">Maitha Government Primary School</p>
+            <p class="edu-detail">Primary education</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SKILLS — grouped by category
+       All skills sourced from curriculum PDF + existing skills
+       ============================================================ -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-label">Skills</div>
+      <h2 class="section-heading">What I Know</h2>
+
+      <div class="skills-categories">
+
+        <!-- ── CATEGORY 1: Programming & Computation ── -->
+        <div class="sr sr-up">
+          <div class="skill-category-title">💻 Programming & Computation</div>
+          <div class="skills-grid">
+
+            <div class="skill-card sr sr-scale">
+              <div class="skill-icon">🐍</div>
+              <p class="skill-name">Python</p>
+              <p class="skill-desc">Scripting, automation, data handling and basic scientific computing.</p>
+            </div>
+
+            <div class="skill-card sr sr-scale d1">
+              <div class="skill-icon">🖥️</div>
+              <p class="skill-name">C Programming</p>
+              <p class="skill-desc">Fundamentals of structured programming, algorithms, file management and data types.</p>
+            </div>
+
+            <div class="skill-card sr sr-scale d2">
+              <div class="skill-icon">📐</div>
+              <p class="skill-name">Engineering Drawing & CAD</p>
+              <p class="skill-desc">2D/3D modelling, orthographic projection, and computer-aided design tools.</p>
+            </div>
+
+            <div class="skill-card sr sr-scale d3">
+              <div class="skill-icon">📊</div>
+              <p class="skill-name">Numerical & Statistical Methods</p>
+              <p class="skill-desc">Interpolation, curve fitting, probability distributions, Fourier & Laplace transforms.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── CATEGORY 2: Materials Science & Engineering ── -->
+        <div class="sr sr-up d1">
+          <div class="skill-category-title">⚗️ Materials Science & Engineering</div>
+          <div class="skills-grid">
+
+            <div class="skill-card sr sr-scale">
+              <div class="skill-icon">🔬</div>
+              <p class="skill-name">Crystallography & XRD</p>
+              <p class="skill-desc">Crystal structures, Miller indices, XRD analysis, Bragg's law, lattice parameter determination.</p>
+            </div>
+
+            <div class="skill-card sr sr-scale d1">
+              <div class="skill-icon">🌡️</div>
+              <p class="skill-name">Materials Thermodynamics</p>
+              <p class="skill-desc">Laws of thermodynamics, phase diagrams, free energy, Gibbs phase rule, binary systems.</p>
+            </div>
+
+            <div class="skill-card sr sr-scale d2">
+              <div class="skill-icon">⚙️</div>
+              <p class="skill-name">Mechanical Testing</p>
+              <p class="skill-desc">Hardness, fatigue, creep, fracture toughness, tensile and compressive property analysis.</p>
+            </div>
+
+            <div class="skill-card sr sr-scale d3">
+              <div class="skill-icon">♻️</div>
+              <p class="skill-name">Composite Materials</p>
+              <p class="skill-desc">Fabrication, characterization and testing of fibre-reinforced and nano-composite materials.</p>
+            </div>
+
+            <div class="skill-card sr sr-scale d4">
+              <div class="skill-icon">🧲</div>
+              <p class="skill-name">Electrochemistry</p>
+              <p class="skill-desc">Electrodeposition, corrosion analysis, electroplating, electrode kinetics and cell design.</p>
+            </div>
+
+            <div class="skill-card sr sr-scale d5">
+              <div class="skill-icon">🏗️</div>
+              <p class="skill-name">Production Metallurgy</p>
+              <p class="skill-desc">Blast furnace, steel making, casting processes, non-ferrous alloy production.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── CATEGORY 3: Characterization Techniques ── -->
+        <div class="sr sr-up d2">
+          <div class="skill-category-title">🔭 Materials Characterization</div>
+          <div class="skills-grid">
+
+            <div class="skill-card sr sr-scale">
+              <div class="skill-icon">🔬</div>
+              <p class="skill-name">Electron Microscopy</p>
+              <p class="skill-desc">SEM and TEM principles, sample preparation, image formation and morphological analysis.</p>
+            </div>
+
+            <div class="skill-card sr sr-scale d1">
+              <div class="skill-icon">📈</div>
+              <p class="skill-name">Thermal Analysis</p>
+              <p class="skill-desc">Thermogravimetric Analysis (TGA), Differential Thermal Analysis (DTA) and data interpretation.</p>
+            </div>
+
+            <div class="skill-card sr sr-scale d2">
+              <div class="skill-icon">💡</div>
+              <p class="skill-name">Spectroscopy</p>
+              <p class="skill-desc">UV-Vis, IR, Raman, AAS and ESCA techniques for structural and compositional analysis.</p>
+            </div>
+
+            <div class="skill-card sr sr-scale d3">
+              <div class="skill-icon">🖇️</div>
+              <p class="skill-name">AFM & STM</p>
+              <p class="skill-desc">Atomic Force and Scanning Tunnelling Microscopy for nanoscale surface characterization.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── CATEGORY 4: Electrical & Electronics ── -->
+        <div class="sr sr-up d3">
+          <div class="skill-category-title">⚡ Electrical & Electronics</div>
+          <div class="skills-grid">
+
+            <div class="skill-card sr sr-scale">
+              <div class="skill-icon">⚡</div>
+              <p class="skill-name">Electrical Engineering</p>
+              <p class="skill-desc">DC/AC circuits, Kirchhoff's laws, Thevenin's theorem, transformers, motors and generators.</p>
+            </div>
+
+            <div class="skill-card sr sr-scale d1">
+              <div class="skill-icon">💾</div>
+              <p class="skill-name">Electronics & Semiconductors</p>
+              <p class="skill-desc">Diodes, transistors, FETs, amplifiers, oscillators and microfabrication processes.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── CATEGORY 5: Professional Skills ── -->
+        <div class="sr sr-up d4">
+          <div class="skill-category-title">🤝 Professional & Soft Skills</div>
+          <div class="skills-grid">
+
+            <div class="skill-card sr sr-scale">
+              <div class="skill-icon">🤝</div>
+              <p class="skill-name">Team Work</p>
+              <p class="skill-desc">Collaborative in group projects, clear communicator, supports teammates toward shared goals.</p>
+            </div>
+
+            <div class="skill-card sr sr-scale d1">
+              <div class="skill-icon">📝</div>
+              <p class="skill-name">Technical Report Writing</p>
+              <p class="skill-desc">Academic and professional writing, research papers, lab reports and presentations.</p>
+            </div>
+
+            <div class="skill-card sr sr-scale d2">
+              <div class="skill-icon">⚖️</div>
+              <p class="skill-name">Engineering Ethics & Law</p>
+              <p class="skill-desc">Professional responsibilities, legal frameworks, contract law and ethical conduct.</p>
+            </div>
+
+            <div class="skill-card sr sr-scale d3">
+              <div class="skill-icon">💡</div>
+              <p class="skill-name">Problem Solving</p>
+              <p class="skill-desc">Analytical thinker who breaks down complex engineering problems to reach practical solutions.</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div><!-- /.skills-categories -->
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       LANGUAGES SECTION
+       ============================================================ -->
+  <section id="languages">
+    <div class="container">
+      <div class="section-label">Languages</div>
+      <h2 class="section-heading">I Speak</h2>
+
+      <div class="lang-grid">
+
+        <!-- Bangla -->
+        <div class="lang-card sr sr-scale">
+          <div class="lang-flag">🇧🇩</div>
+          <div class="lang-info">
+            <p class="lang-name">Bangla</p>
+            <p class="lang-level">Native</p>
+            <div class="lang-bar"><div class="lang-fill" data-width="100%"></div></div>
+          </div>
+        </div>
+
+        <!-- English -->
+        <div class="lang-card sr sr-scale d1">
+          <div class="lang-flag">🇬🇧</div>
+          <div class="lang-info">
+            <p class="lang-name">English</p>
+            <p class="lang-level">Professional</p>
+            <div class="lang-bar"><div class="lang-fill" data-width="80%"></div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CONTACT
+       ============================================================ -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-label">Contact</div>
+      <h2 class="section-heading">Get In Touch</h2>
+
+      <p class="contact-intro sr sr-up">
+        Feel free to reach out via email or connect on any platform below.
+        I'm always open to conversations about materials engineering, Python, or collaboration opportunities.
+      </p>
+
+      <div class="contact-grid">
+
+        <div class="contact-item sr sr-up">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <p class="contact-label">Email</p>
+            <p class="contact-value"><a href="mailto:mdabuubaeda@gmail.com">mdabuubaeda@gmail.com</a></p>
+          </div>
+        </div>
+
+        <div class="contact-item sr sr-up d1">
+          <div class="contact-icon">🎓</div>
+          <div>
+            <p class="contact-label">University Email</p>
+            <p class="contact-value"><a href="mailto:s2510978144@ru.ac.bd">s2510978144@ru.ac.bd</a></p>
+          </div>
+        </div>
+
+        <div class="contact-item sr sr-up d2">
+          <div class="contact-icon">📞</div>
+          <div>
+            <p class="contact-label">Mobile</p>
+            <p class="contact-value"><a href="tel:+8801571505487">01571-505487</a></p>
+          </div>
+        </div>
+
+        <div class="contact-item sr sr-up d3">
+          <div class="contact-icon">🐙</div>
+          <div>
+            <p class="contact-label">GitHub</p>
+            <p class="contact-value"><a href="https://github.com/ubae-da" target="_blank" rel="noopener">ubae-da</a></p>
+          </div>
+        </div>
+
+        <div class="contact-item sr sr-up d4">
+          <div class="contact-icon">💼</div>
+          <div>
+            <p class="contact-label">LinkedIn</p>
+            <p class="contact-value"><a href="https://linkedin.com/in/abu-ubaeda" target="_blank" rel="noopener">abu-ubaeda</a></p>
+          </div>
+        </div>
+
+        <div class="contact-item sr sr-up d5">
+          <div class="contact-icon">📷</div>
+          <div>
+            <p class="contact-label">Instagram</p>
+            <p class="contact-value"><a href="https://instagram.com/mdabuubaeda" target="_blank" rel="noopener">@mdabuubaeda</a></p>
+          </div>
+        </div>
+
+        <div class="contact-item sr sr-up d5">
+          <div class="contact-icon">▶️</div>
+          <div>
+            <p class="contact-label">YouTube</p>
+            <p class="contact-value"><a href="https://youtube.com/@mdabuubaeda7445" target="_blank" rel="noopener">mdabuubaeda7445</a></p>
+          </div>
+        </div>
+
+        <div class="contact-item sr sr-up d6">
+          <div class="contact-icon">🧵</div>
+          <div>
+            <p class="contact-label">Threads</p>
+            <p class="contact-value"><a href="https://threads.net/@mdabuubaeda" target="_blank" rel="noopener">@mdabuubaeda</a></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer>
+    <p>© 2026 <strong>Abu Ubaeda</strong> · Rajshahi, Bangladesh · B.Sc. MSE, University of Rajshahi</p>
+  </footer>
+
+
+  <!-- ============================================================
+       JAVASCRIPT
+       1. Dark mode toggle — persists via localStorage
+       2. Scroll-reveal — IntersectionObserver + .visible class
+       3. Photo upload — FileReader → avatar preview + localStorage
+       ============================================================ -->
+  <script>
+    /* ----------------------------------------------------------
+       1. DARK MODE TOGGLE
+       Saves preference to localStorage key "theme".
+       On load, restores the saved theme (default: light).
+    ---------------------------------------------------------- */
+    const themeCheckbox = document.getElementById('theme-checkbox');
+    const htmlEl = document.documentElement;
+
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    htmlEl.setAttribute('data-theme', savedTheme);
+    themeCheckbox.checked = (savedTheme === 'dark');
+
+    themeCheckbox.addEventListener('change', () => {
+      const theme = themeCheckbox.checked ? 'dark' : 'light';
+      htmlEl.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+    });
+
+
+    /* ----------------------------------------------------------
+       2. SCROLL-REVEAL
+       IntersectionObserver watches all .sr elements.
+       When 10% enters the viewport → .visible class is added,
+       triggering the CSS opacity/transform transition.
+       Language bars: when a .lang-card becomes visible,
+       the .lang-fill inside animates its width from 0 to
+       the value stored in data-width attribute.
+       Each element is observed only once (unobserve after firing).
+    ---------------------------------------------------------- */
+    const revealObserver = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+
+            // If this is a language card, animate the bar
+            const fill = entry.target.querySelector('.lang-fill');
+            if (fill) {
+              const targetWidth = fill.getAttribute('data-width') || '0%';
+              // Small delay so opacity transition starts first
+              setTimeout(() => { fill.style.width = targetWidth; }, 200);
+            }
+
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -24px 0px' }
+    );
+
+    document.querySelectorAll('.sr').forEach(el => revealObserver.observe(el));
+
+
+    /* ----------------------------------------------------------
+       3. PHOTO UPLOAD
+       Clicking avatar div triggers hidden <input type="file">.
+       FileReader converts picked image to base64 data-URL.
+       Shows image, hides monogram, updates hint text.
+       Saves to localStorage so photo persists on refresh.
+       Catches QuotaExceededError for very large images.
+    ---------------------------------------------------------- */
+    const photoInput = document.getElementById('photo-input');
+    const avatarImg  = document.getElementById('avatar-img');
+    const monogram   = document.getElementById('avatar-monogram');
+    const hint       = document.getElementById('avatar-hint');
+
+    // Restore saved photo on page load
+    try {
+      const saved = localStorage.getItem('avatarPhoto');
+      if (saved) showPhoto(saved);
+    } catch(e) {}
+
+    photoInput.addEventListener('change', e => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = evt => {
+        showPhoto(evt.target.result);
+        try { localStorage.setItem('avatarPhoto', evt.target.result); }
+        catch(e) { console.warn('Photo too large to cache:', e); }
+      };
+      reader.readAsDataURL(file);
+    });
+
+    function showPhoto(src) {
+      avatarImg.src = src;
+      avatarImg.style.display = 'block';
+      monogram.style.display  = 'none';
+      hint.textContent        = 'Click to change photo';
+    }
+  </script>
+
+</body>
+</html>
