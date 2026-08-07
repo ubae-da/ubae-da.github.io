@@ -266,12 +266,10 @@
       border-radius: 50%;
       border: 3px solid var(--accent);
       background: var(--accent-lt);
-      cursor: pointer;
       display: flex; align-items: center; justify-content: center;
       overflow: hidden; position: relative;
       transition: transform var(--t), box-shadow var(--t),
                   border-color var(--t), background var(--t);
-      /* Rotating border glow on hover */
       box-shadow: 0 0 0 0 rgba(14,165,160,0);
     }
 
@@ -291,23 +289,6 @@
       display: none; width: 100%; height: 100%;
       object-fit: cover; border-radius: 50%;
     }
-
-    .avatar-overlay {
-      position: absolute; inset: 0; border-radius: 50%;
-      background: rgba(0,0,0,0.5);
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0; transition: opacity var(--t);
-      color: #fff; font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 0.06em; text-align: center; padding: 0.5rem;
-    }
-    .hero-avatar:hover .avatar-overlay { opacity: 1; }
-
-    .avatar-hint {
-      font-size: 0.72rem; color: var(--muted);
-      letter-spacing: 0.04em; transition: color var(--t);
-    }
-
-    #photo-input { display: none; }
 
     /* ============================================================
        EDUCATION
@@ -688,26 +669,17 @@
           </div>
         </div>
 
-        <!-- Right: photo avatar
-             Click to open file picker → FileReader previews instantly.
-             Photo saved in localStorage so it persists on refresh. -->
+        <!-- Right: photo avatar -->
         <div class="hero-photo-wrap">
-          <input type="file" id="photo-input" accept="image/*">
-
-          <div class="hero-avatar"
-               id="avatar-circle"
-               onclick="document.getElementById('photo-input').click()"
-               title="Click to upload your photo">
+          <div class="hero-avatar" id="avatar-circle">
             <span class="avatar-monogram" id="avatar-monogram">AU</span>
-            <img id="avatar-img" src="profile.jpg" alt="Profile photo" onerror="this.style.display='none'" onload="this.style.display='block'; document.getElementById('avatar-monogram').style.display='none'; document.getElementById('avatar-hint').textContent='Click to change photo';">
-            <div class="avatar-overlay">📷 Upload Photo</div>
+            <img id="avatar-img" src="profile.jpg" alt="Profile photo" onerror="this.style.display='none'" onload="this.style.display='block'; document.getElementById('avatar-monogram').style.display='none';">
           </div>
-
-          <span class="avatar-hint" id="avatar-hint">Click to add photo</span>
         </div>
       </div>
     </div>
   </section>
+
 
 
   <!-- ============================================================
@@ -1166,43 +1138,6 @@
     document.querySelectorAll('.sr').forEach(el => revealObserver.observe(el));
 
 
-    /* ----------------------------------------------------------
-       3. PHOTO UPLOAD
-       Clicking avatar div triggers hidden <input type="file">.
-       FileReader converts picked image to base64 data-URL.
-       Shows image, hides monogram, updates hint text.
-       Saves to localStorage so photo persists on refresh.
-       Catches QuotaExceededError for very large images.
-    ---------------------------------------------------------- */
-    const photoInput = document.getElementById('photo-input');
-    const avatarImg  = document.getElementById('avatar-img');
-    const monogram   = document.getElementById('avatar-monogram');
-    const hint       = document.getElementById('avatar-hint');
-
-    // Restore saved photo on page load
-    try {
-      const saved = localStorage.getItem('avatarPhoto');
-      if (saved) showPhoto(saved);
-    } catch(e) {}
-
-    photoInput.addEventListener('change', e => {
-      const file = e.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = evt => {
-        showPhoto(evt.target.result);
-        try { localStorage.setItem('avatarPhoto', evt.target.result); }
-        catch(e) { console.warn('Photo too large to cache:', e); }
-      };
-      reader.readAsDataURL(file);
-    });
-
-    function showPhoto(src) {
-      avatarImg.src = src;
-      avatarImg.style.display = 'block';
-      monogram.style.display  = 'none';
-      hint.textContent        = 'Click to change photo';
-    }
   </script>
 
 </body>
