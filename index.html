@@ -425,7 +425,43 @@
     }
 
     /* ============================================================
-       SKILLS — category grid layout
+       SKILLS — tabbed "What I Know" / "What I'm Learning"
+       ============================================================ */
+    .skills-tabs {
+      display: flex; gap: 0.7rem; flex-wrap: wrap;
+      margin-bottom: 2.4rem;
+    }
+
+    .skills-tab {
+      font-family: var(--font-head);
+      font-size: 0.82rem; font-weight: 700;
+      letter-spacing: 0.03em;
+      color: var(--muted);
+      background: var(--surface2);
+      border: 1px solid var(--rule);
+      padding: 0.55rem 1.3rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all var(--t);
+    }
+
+    .skills-tab:hover:not(.active) {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .skills-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .skills-panel { display: none; }
+    .skills-panel.active { display: block; }
+
+    /* ============================================================
+       SKILLS — flat grid layout, with an optional labeled group
+       (used for "Professional & Soft Skills")
        ============================================================ */
     .skills-categories {
       display: flex; flex-direction: column; gap: 2.5rem;
@@ -748,7 +784,7 @@
             Undergraduate student at the University of Rajshahi pursuing a
             B.Sc. in Materials Science and Engineering (2025–2029).
             Passionate about materials processing, characterization, and
-            computational tools. Enjoy writing Python scripts and working
+            computational tools. Enjoy working
             collaboratively on engineering challenges.
           </p>
 
@@ -879,177 +915,259 @@
 
 
   <!-- ============================================================
-       SKILLS — grouped by category
-       All skills sourced from curriculum PDF + existing skills
+       SKILLS — tabbed: "What I Know" (completed) vs
+       "What I'm Learning" (current + upcoming semesters)
+       Sourced directly from the official MSE, RU Curriculum 2024-25
        ============================================================ -->
   <section id="skills">
     <div class="container">
       <div class="section-label">Skills</div>
-      <h2 class="section-heading">What I Know</h2>
+      <h2 class="section-heading">What I Know &amp; What I'm Learning</h2>
 
-      <div class="skills-categories">
+      <div class="skills-tabs" role="tablist">
+        <button class="skills-tab active" data-tab="know" role="tab" aria-selected="true">What I Know</button>
+        <button class="skills-tab" data-tab="learning" role="tab" aria-selected="false">What I'm Learning</button>
+      </div>
 
-        <!-- ── CATEGORY 1: Programming & Computation ── -->
-        <div class="sr sr-up">
-          <div class="skill-category-title">💻 Programming & Computation</div>
+      <!-- ────────────────── PANEL: WHAT I KNOW ────────────────── -->
+      <div class="skills-panel active" data-panel="know">
+        <div class="skills-categories">
+
           <div class="skills-grid">
 
             <div class="skill-card sr sr-scale">
-              <div class="skill-icon">🐍</div>
-              <p class="skill-name">Python</p>
-              <p class="skill-desc">Scripting, automation, data handling and basic scientific computing.</p>
+              <div class="skill-icon">🧪</div>
+              <p class="skill-name">Intro to Materials Science &amp; Engineering</p>
+              <p class="skill-desc">Foundational concepts of material classes, structure-property relationships and engineering applications.</p>
             </div>
 
             <div class="skill-card sr sr-scale d1">
-              <div class="skill-icon">🖥️</div>
-              <p class="skill-name">C Programming</p>
-              <p class="skill-desc">Fundamentals of structured programming, algorithms, file management and data types.</p>
+              <div class="skill-icon">🔷</div>
+              <p class="skill-name">Crystallography (I &amp; II)</p>
+              <p class="skill-desc">Crystal systems, Miller indices, unit cells and crystal structure determination.</p>
             </div>
 
             <div class="skill-card sr sr-scale d2">
-              <div class="skill-icon">📐</div>
-              <p class="skill-name">Engineering Drawing & CAD</p>
-              <p class="skill-desc">2D/3D modelling, orthographic projection, and computer-aided design tools.</p>
+              <div class="skill-icon">🌊</div>
+              <p class="skill-name">Solid and Fluid Mechanics</p>
+              <p class="skill-desc">Stress-strain behaviour, fluid statics/dynamics and mechanics of deformable bodies.</p>
             </div>
 
             <div class="skill-card sr sr-scale d3">
-              <div class="skill-icon">📊</div>
-              <p class="skill-name">Numerical & Statistical Methods</p>
-              <p class="skill-desc">Interpolation, curve fitting, probability distributions, Fourier & Laplace transforms.</p>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- ── CATEGORY 2: Materials Science & Engineering ── -->
-        <div class="sr sr-up d1">
-          <div class="skill-category-title">⚗️ Materials Science & Engineering</div>
-          <div class="skills-grid">
-
-            <div class="skill-card sr sr-scale">
-              <div class="skill-icon">🔬</div>
-              <p class="skill-name">Crystallography & XRD</p>
-              <p class="skill-desc">Crystal structures, Miller indices, XRD analysis, Bragg's law, lattice parameter determination.</p>
-            </div>
-
-            <div class="skill-card sr sr-scale d1">
-              <div class="skill-icon">🌡️</div>
-              <p class="skill-name">Materials Thermodynamics</p>
-              <p class="skill-desc">Laws of thermodynamics, phase diagrams, free energy, Gibbs phase rule, binary systems.</p>
-            </div>
-
-            <div class="skill-card sr sr-scale d2">
-              <div class="skill-icon">⚙️</div>
-              <p class="skill-name">Mechanical Testing</p>
-              <p class="skill-desc">Hardness, fatigue, creep, fracture toughness, tensile and compressive property analysis.</p>
-            </div>
-
-            <div class="skill-card sr sr-scale d3">
-              <div class="skill-icon">♻️</div>
-              <p class="skill-name">Composite Materials</p>
-              <p class="skill-desc">Fabrication, characterization and testing of fibre-reinforced and nano-composite materials.</p>
+              <div class="skill-icon">➗</div>
+              <p class="skill-name">Engineering Mathematics</p>
+              <p class="skill-desc">Matrices, vector analysis, coordinate geometry, calculus and differential equations.</p>
             </div>
 
             <div class="skill-card sr sr-scale d4">
-              <div class="skill-icon">🧲</div>
-              <p class="skill-name">Electrochemistry</p>
-              <p class="skill-desc">Electrodeposition, corrosion analysis, electroplating, electrode kinetics and cell design.</p>
+              <div class="skill-icon">⚡</div>
+              <p class="skill-name">Electricity and Magnetism</p>
+              <p class="skill-desc">Electric fields, circuit fundamentals, magnetic fields and electromagnetic principles.</p>
             </div>
 
             <div class="skill-card sr sr-scale d5">
-              <div class="skill-icon">🏗️</div>
-              <p class="skill-name">Production Metallurgy</p>
-              <p class="skill-desc">Blast furnace, steel making, casting processes, non-ferrous alloy production.</p>
+              <div class="skill-icon">⚗️</div>
+              <p class="skill-name">Chemistry Fundamentals</p>
+              <p class="skill-desc">Organic, physical and inorganic chemistry as applied to materials.</p>
+            </div>
+
+            <div class="skill-card sr sr-scale d6">
+              <div class="skill-icon">📐</div>
+              <p class="skill-name">Engineering Drawing</p>
+              <p class="skill-desc">2D/3D drafting, orthographic projection and technical drawing fundamentals.</p>
             </div>
 
           </div>
-        </div>
 
-        <!-- ── CATEGORY 3: Characterization Techniques ── -->
-        <div class="sr sr-up d2">
-          <div class="skill-category-title">🔭 Materials Characterization</div>
-          <div class="skills-grid">
+          <!-- Programming — kept as its own labeled group -->
+          <div class="sr sr-up">
+            <div class="skill-category-title">💻 Programming</div>
+            <div class="skills-grid">
 
-            <div class="skill-card sr sr-scale">
-              <div class="skill-icon">🔬</div>
-              <p class="skill-name">Electron Microscopy</p>
-              <p class="skill-desc">SEM and TEM principles, sample preparation, image formation and morphological analysis.</p>
+              <div class="skill-card sr sr-scale">
+                <div class="skill-icon">🐍</div>
+                <p class="skill-name">Python (Intermediate)</p>
+                <p class="skill-desc">Scripting, automation, data handling and basic scientific computing.</p>
+              </div>
+
+              <div class="skill-card sr sr-scale d1">
+                <div class="skill-icon">🖥️</div>
+                <p class="skill-name">C Programming</p>
+                <p class="skill-desc">Structured programming, algorithms, file handling and data types.</p>
+              </div>
+
             </div>
-
-            <div class="skill-card sr sr-scale d1">
-              <div class="skill-icon">📈</div>
-              <p class="skill-name">Thermal Analysis</p>
-              <p class="skill-desc">Thermogravimetric Analysis (TGA), Differential Thermal Analysis (DTA) and data interpretation.</p>
-            </div>
-
-            <div class="skill-card sr sr-scale d2">
-              <div class="skill-icon">💡</div>
-              <p class="skill-name">Spectroscopy</p>
-              <p class="skill-desc">UV-Vis, IR, Raman, AAS and ESCA techniques for structural and compositional analysis.</p>
-            </div>
-
-            <div class="skill-card sr sr-scale d3">
-              <div class="skill-icon">🖇️</div>
-              <p class="skill-name">AFM & STM</p>
-              <p class="skill-desc">Atomic Force and Scanning Tunnelling Microscopy for nanoscale surface characterization.</p>
-            </div>
-
           </div>
-        </div>
 
-        <!-- ── CATEGORY 4: Electrical & Electronics ── -->
-        <div class="sr sr-up d3">
-          <div class="skill-category-title">⚡ Electrical & Electronics</div>
-          <div class="skills-grid">
+          <!-- Professional & Soft Skills — kept as its own labeled group -->
+          <div class="sr sr-up">
+            <div class="skill-category-title">🤝 Professional &amp; Soft Skills</div>
+            <div class="skills-grid">
 
-            <div class="skill-card sr sr-scale">
-              <div class="skill-icon">⚡</div>
-              <p class="skill-name">Electrical Engineering</p>
-              <p class="skill-desc">DC/AC circuits, Kirchhoff's laws, Thevenin's theorem, transformers, motors and generators.</p>
+              <div class="skill-card sr sr-scale">
+                <div class="skill-icon">🤝</div>
+                <p class="skill-name">Team Work</p>
+                <p class="skill-desc">Collaborative in group projects, clear communicator, supports teammates toward shared goals.</p>
+              </div>
+
+              <div class="skill-card sr sr-scale d1">
+                <div class="skill-icon">📝</div>
+                <p class="skill-name">Technical Report Writing</p>
+                <p class="skill-desc">Academic and professional writing, research papers, lab reports and presentations.</p>
+              </div>
+
+              <div class="skill-card sr sr-scale d2">
+                <div class="skill-icon">💡</div>
+                <p class="skill-name">Problem Solving</p>
+                <p class="skill-desc">Analytical thinker who breaks down complex engineering problems to reach practical solutions.</p>
+              </div>
+
             </div>
-
-            <div class="skill-card sr sr-scale d1">
-              <div class="skill-icon">💾</div>
-              <p class="skill-name">Electronics & Semiconductors</p>
-              <p class="skill-desc">Diodes, transistors, FETs, amplifiers, oscillators and microfabrication processes.</p>
-            </div>
-
           </div>
-        </div>
 
-        <!-- ── CATEGORY 5: Professional Skills ── -->
-        <div class="sr sr-up d4">
-          <div class="skill-category-title">🤝 Professional & Soft Skills</div>
-          <div class="skills-grid">
+        </div><!-- /.skills-categories -->
+      </div><!-- /panel: know -->
 
-            <div class="skill-card sr sr-scale">
-              <div class="skill-icon">🤝</div>
-              <p class="skill-name">Team Work</p>
-              <p class="skill-desc">Collaborative in group projects, clear communicator, supports teammates toward shared goals.</p>
-            </div>
+      <!-- ─────────────── PANEL: WHAT I'M LEARNING ─────────────── -->
+      <div class="skills-panel" data-panel="learning">
+        <div class="skills-grid">
 
-            <div class="skill-card sr sr-scale d1">
-              <div class="skill-icon">📝</div>
-              <p class="skill-name">Technical Report Writing</p>
-              <p class="skill-desc">Academic and professional writing, research papers, lab reports and presentations.</p>
-            </div>
-
-            <div class="skill-card sr sr-scale d2">
-              <div class="skill-icon">⚖️</div>
-              <p class="skill-name">Engineering Ethics & Law</p>
-              <p class="skill-desc">Professional responsibilities, legal frameworks, contract law and ethical conduct.</p>
-            </div>
-
-            <div class="skill-card sr sr-scale d3">
-              <div class="skill-icon">💡</div>
-              <p class="skill-name">Problem Solving</p>
-              <p class="skill-desc">Analytical thinker who breaks down complex engineering problems to reach practical solutions.</p>
-            </div>
-
+          <div class="skill-card sr sr-scale">
+            <div class="skill-icon">🌡️</div>
+            <p class="skill-name">Materials Thermodynamics</p>
+            <p class="skill-desc">Laws of thermodynamics, free energy, phase equilibria and binary systems.</p>
           </div>
-        </div>
 
-      </div><!-- /.skills-categories -->
+          <div class="skill-card sr sr-scale d1">
+            <div class="skill-icon">🔋</div>
+            <p class="skill-name">Electronic Properties of Materials</p>
+            <p class="skill-desc">Band theory, conductivity, semiconductors and dielectric behaviour.</p>
+          </div>
+
+          <div class="skill-card sr sr-scale d2">
+            <div class="skill-icon">⚡</div>
+            <p class="skill-name">Electrical Engineering</p>
+            <p class="skill-desc">DC/AC circuits, Kirchhoff's laws, transformers, motors and generators.</p>
+          </div>
+
+          <div class="skill-card sr sr-scale d3">
+            <div class="skill-icon">🌈</div>
+            <p class="skill-name">Waves, Optics &amp; Optical Properties</p>
+            <p class="skill-desc">Wave phenomena, interference, diffraction and optical behaviour of materials.</p>
+          </div>
+
+          <div class="skill-card sr sr-scale d4">
+            <div class="skill-icon">📊</div>
+            <p class="skill-name">Phase Diagram &amp; Microstructure</p>
+            <p class="skill-desc">Binary/ternary phase diagrams, phase transformations and microstructural evolution.</p>
+          </div>
+
+          <div class="skill-card sr sr-scale d5">
+            <div class="skill-icon">🔄</div>
+            <p class="skill-name">Transport &amp; Kinetic Phenomena</p>
+            <p class="skill-desc">Diffusion, heat and mass transport, and reaction kinetics in materials.</p>
+          </div>
+
+          <div class="skill-card sr sr-scale d6">
+            <div class="skill-icon">⚙️</div>
+            <p class="skill-name">Mechanical Properties of Materials</p>
+            <p class="skill-desc">Elasticity, plasticity, hardness, fatigue and fracture behaviour.</p>
+          </div>
+
+          <div class="skill-card sr sr-scale">
+            <div class="skill-icon">🖥️</div>
+            <p class="skill-name">Computer Fundamentals &amp; Programming in C</p>
+            <p class="skill-desc">Structured programming, algorithms and computational problem-solving.</p>
+          </div>
+
+          <div class="skill-card sr sr-scale d1">
+            <div class="skill-icon">🧵</div>
+            <p class="skill-name">Polymeric Materials</p>
+            <p class="skill-desc">Polymer structure, synthesis, processing and properties.</p>
+          </div>
+
+          <div class="skill-card sr sr-scale d2">
+            <div class="skill-icon">🔋</div>
+            <p class="skill-name">Electrochemical Engineering</p>
+            <p class="skill-desc">Electrode kinetics, electrodeposition, cell design and corrosion basics.</p>
+          </div>
+
+          <div class="skill-card sr sr-scale d3">
+            <div class="skill-icon">♻️</div>
+            <p class="skill-name">Composite Materials</p>
+            <p class="skill-desc">Fibre-reinforced and nano-composite fabrication and characterization.</p>
+          </div>
+
+          <div class="skill-card sr sr-scale d4">
+            <div class="skill-icon">🏗️</div>
+            <p class="skill-name">Production Metallurgy</p>
+            <p class="skill-desc">Blast furnace, steel making, casting processes and non-ferrous alloy production.</p>
+          </div>
+
+          <div class="skill-card sr sr-scale d5">
+            <div class="skill-icon">🔧</div>
+            <p class="skill-name">Physical Metallurgy of Iron &amp; Steels</p>
+            <p class="skill-desc">Microstructure-property relationships in ferrous alloys.</p>
+          </div>
+
+          <div class="skill-card sr sr-scale d6">
+            <div class="skill-icon">🛡️</div>
+            <p class="skill-name">Corrosion Engineering</p>
+            <p class="skill-desc">Corrosion mechanisms, prevention methods and protective coatings.</p>
+          </div>
+
+          <div class="skill-card sr sr-scale">
+            <div class="skill-icon">🪟</div>
+            <p class="skill-name">Glass &amp; Ceramics</p>
+            <p class="skill-desc">Processing, structure and properties of glass and ceramic materials.</p>
+          </div>
+
+          <div class="skill-card sr sr-scale d1">
+            <div class="skill-icon">🔋</div>
+            <p class="skill-name">Materials for Energy Conversion &amp; Storage</p>
+            <p class="skill-desc">Batteries, fuel cells, solar materials and energy storage systems.</p>
+          </div>
+
+          <div class="skill-card sr sr-scale d2">
+            <div class="skill-icon">🔬</div>
+            <p class="skill-name">Materials Characterization-I</p>
+            <p class="skill-desc">SEM, XRD and other techniques for structural and compositional analysis.</p>
+          </div>
+
+          <div class="skill-card sr sr-scale d3">
+            <div class="skill-icon">🧲</div>
+            <p class="skill-name">Magnetic &amp; Dielectric Materials</p>
+            <p class="skill-desc">Magnetic ordering, dielectric behaviour and functional material design.</p>
+          </div>
+
+          <div class="skill-card sr sr-scale d4">
+            <div class="skill-icon">🧽</div>
+            <p class="skill-name">Surface Science &amp; Engineering</p>
+            <p class="skill-desc">Surface phenomena, coatings and interface engineering.</p>
+          </div>
+
+          <div class="skill-card sr sr-scale d5">
+            <div class="skill-icon">🧬</div>
+            <p class="skill-name">Nano- and Biomaterials</p>
+            <p class="skill-desc">Nanomaterials synthesis and biomaterials for medical applications.</p>
+          </div>
+
+          <div class="skill-card sr sr-scale d6">
+            <div class="skill-icon">🔬</div>
+            <p class="skill-name">Materials Characterization-II</p>
+            <p class="skill-desc">Advanced characterization: TEM, spectroscopy and thermal analysis.</p>
+          </div>
+
+          <div class="skill-card sr sr-scale">
+            <div class="skill-icon">💻</div>
+            <p class="skill-name">Computational Materials Science</p>
+            <p class="skill-desc">Simulation and modelling methods for materials design.</p>
+          </div>
+
+        </div>
+      </div><!-- /panel: learning -->
+
+
     </div>
   </section>
 
@@ -1315,7 +1433,37 @@
 
 
     /* ----------------------------------------------------------
-       2. SCROLL-REVEAL
+       2. SKILLS TABS
+       Toggles between "What I Know" and "What I'm Learning" panels.
+       Cards inside the panel being shown for the first time are
+       marked .visible directly, since IntersectionObserver never
+       fires for elements that started out display:none.
+    ---------------------------------------------------------- */
+    const skillsTabs = document.querySelectorAll('.skills-tab');
+    const skillsPanels = document.querySelectorAll('.skills-panel');
+
+    skillsTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.getAttribute('data-tab');
+
+        skillsTabs.forEach(t => {
+          t.classList.toggle('active', t === tab);
+          t.setAttribute('aria-selected', t === tab ? 'true' : 'false');
+        });
+
+        skillsPanels.forEach(panel => {
+          const isTarget = panel.getAttribute('data-panel') === target;
+          panel.classList.toggle('active', isTarget);
+          if (isTarget) {
+            panel.querySelectorAll('.sr').forEach(el => el.classList.add('visible'));
+          }
+        });
+      });
+    });
+
+
+    /* ----------------------------------------------------------
+       3. SCROLL-REVEAL
        IntersectionObserver watches all .sr elements.
        When 10% enters the viewport → .visible class is added,
        triggering the CSS opacity/transform transition.
