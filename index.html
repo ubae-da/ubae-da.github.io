@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -1415,20 +1415,23 @@
 
     /* ----------------------------------------------------------
        1. DARK MODE TOGGLE
-       Saves preference to localStorage key "theme".
-       On load, restores the saved theme (default: light).
+       Saves preference to localStorage key "site-theme"
+       (renamed from "theme" so any old saved preference from
+       earlier versions of this page doesn't override the new
+       dark-by-default behaviour).
+       On load, restores the saved theme (default: dark).
     ---------------------------------------------------------- */
     const themeCheckbox = document.getElementById('theme-checkbox');
     const htmlEl = document.documentElement;
 
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    const savedTheme = localStorage.getItem('site-theme') || 'dark';
     htmlEl.setAttribute('data-theme', savedTheme);
     themeCheckbox.checked = (savedTheme === 'dark');
 
     themeCheckbox.addEventListener('change', () => {
       const theme = themeCheckbox.checked ? 'dark' : 'light';
       htmlEl.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
+      localStorage.setItem('site-theme', theme);
     });
 
 
