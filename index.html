@@ -71,61 +71,116 @@
     a { color: inherit; text-decoration: none; }
 
     /* ============================================================
-       NAVIGATION
+       LEFT ICON SIDEBAR (replaces the old top nav bar)
+       Slim vertical rail, icon-only links, fixed to the left edge.
        ============================================================ */
-    nav {
-      position: sticky; top: 0; z-index: 200;
+    .sidebar {
+      position: fixed; left: 0; top: 0; bottom: 0; z-index: 200;
+      width: 76px;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 2.2rem;
+      padding: 1.3rem 0 1.6rem;
       background: var(--nav-bg);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--rule);
-      transition: background var(--t), border-color var(--t);
+      border-right: 1px solid var(--rule);
+      /* Hidden by default — slid off-screen; revealed via the toggle button */
+      transform: translateX(-100%);
+      transition: background var(--t), border-color var(--t), transform var(--t);
     }
+    .sidebar.open { transform: translateX(0); }
 
-    .nav-inner {
-      max-width: var(--max-w);
-      margin: 0 auto; padding: 0 2rem;
-      height: 58px;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-
-    /* Logo: bold geometric Syne font */
-    .nav-logo {
-      font-family: var(--font-head);
-      font-size: 1.15rem; font-weight: 800;
-      letter-spacing: -0.02em;
+    /* Hamburger button that opens/closes the sidebar. Fixed top-left,
+       slides along with the sidebar edge so it never overlaps the logo. */
+    .sidebar-toggle {
+      position: fixed; top: 1.1rem; left: 1.4rem; z-index: 260;
+      width: 42px; height: 42px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--surface);
+      border: 1px solid var(--rule);
       color: var(--ink);
-      transition: color var(--t);
+      cursor: pointer;
+      transition: left var(--t), background var(--t), border-color var(--t), color var(--t);
+    }
+    .sidebar-toggle:hover { color: var(--accent); border-color: var(--accent); }
+    .sidebar-toggle svg {
+      width: 20px; height: 20px;
+      stroke: currentColor; fill: none;
+      stroke-width: 1.8; stroke-linecap: round;
+    }
+    body.sidebar-open .sidebar-toggle { left: 92px; }
+
+    /* Circular monogram logo at the top of the rail */
+    .sidebar-logo {
+      width: 42px; height: 42px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--accent-lt);
+      color: var(--accent);
+      font-family: var(--font-head);
+      font-weight: 800; font-size: 0.95rem;
+      border: 1.5px solid var(--accent);
+      flex-shrink: 0;
+      transition: background var(--t), color var(--t), border-color var(--t);
     }
 
-    .nav-logo span { color: var(--accent); }
+    .sidebar-links {
+      display: flex; flex-direction: column; gap: 0.6rem;
+      list-style: none; margin-top: 0.4rem;
+    }
 
-    .nav-right { display: flex; align-items: center; gap: 2rem; }
-
-    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
-
-    .nav-links a {
-      font-size: 0.8rem; font-weight: 500;
-      letter-spacing: 0.1em; text-transform: uppercase;
+    .sidebar-links a {
+      width: 46px; height: 46px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 12px;
       color: var(--muted);
-      position: relative; transition: color var(--t);
+      position: relative;
+      transition: color var(--t), background var(--t);
     }
 
-    .nav-links a::after {
-      content: '';
-      position: absolute; bottom: -4px; left: 0;
-      width: 0; height: 2px;
-      background: var(--accent);
-      border-radius: 2px;
-      transition: width var(--t);
+    .sidebar-links svg {
+      width: 21px; height: 21px;
+      stroke: currentColor; fill: none;
+      stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round;
     }
-    .nav-links a:hover { color: var(--accent); }
-    .nav-links a:hover::after { width: 100%; }
+
+    .sidebar-links a:hover,
+    .sidebar-links a.active {
+      color: var(--accent);
+      background: var(--accent-lt);
+    }
+
+    /* Tooltip label on hover, since icons carry no text */
+    .sidebar-links a::after {
+      content: attr(data-label);
+      position: absolute; left: calc(100% + 10px);
+      top: 50%; transform: translateY(-50%);
+      background: var(--surface);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.02em;
+      padding: 0.35rem 0.7rem;
+      border-radius: 6px;
+      border: 1px solid var(--rule);
+      box-shadow: var(--shadow2);
+      white-space: nowrap;
+      opacity: 0; pointer-events: none;
+      transition: opacity var(--t), transform var(--t);
+    }
+    .sidebar-links a:hover::after {
+      opacity: 1; transform: translateY(-50%) translateX(4px);
+    }
+
+    /* Sidebar is hidden by default, so content sits full-width;
+       page content shifts over only while the sidebar is open. */
+    body { padding-left: 0; transition: padding-left var(--t); }
+    body.sidebar-open { padding-left: 76px; }
 
     /* ============================================================
-       DARK MODE TOGGLE — pill switch
+       DARK MODE TOGGLE — pill switch, fixed to the top-right corner
        ============================================================ */
     .theme-toggle {
-      position: relative; width: 46px; height: 24px;
+      position: fixed; top: 1.1rem; right: 1.4rem; z-index: 250;
+      width: 46px; height: 24px;
       cursor: pointer; flex-shrink: 0;
     }
     .theme-toggle input { opacity: 0; width: 0; height: 0; }
@@ -602,43 +657,78 @@
       .hero-grid { grid-template-columns: 1fr; }
       .hero-photo-wrap { order: -1; }
       .edu-item { grid-template-columns: 80px 1fr; gap: 1rem; }
-      .nav-links { gap: 1rem; }
-      .nav-links a { font-size: 0.72rem; }
-      .nav-right { gap: 1rem; }
+
+      /* Slimmer rail on small screens; tooltips hidden (no hover on touch) */
+      .sidebar { width: 58px; gap: 1.6rem; padding: 1rem 0 1.2rem; }
+      .sidebar-logo { width: 36px; height: 36px; font-size: 0.8rem; }
+      .sidebar-links { gap: 0.35rem; }
+      .sidebar-links a { width: 40px; height: 40px; border-radius: 10px; }
+      .sidebar-links svg { width: 19px; height: 19px; }
+      .sidebar-links a::after { display: none; }
+      body.sidebar-open { padding-left: 58px; }
+      .sidebar-toggle { top: 0.85rem; left: 0.9rem; width: 38px; height: 38px; }
+      body.sidebar-open .sidebar-toggle { left: 68px; }
+      .theme-toggle { top: 0.85rem; right: 0.9rem; }
     }
   </style>
 </head>
 <body>
 
   <!-- ============================================================
-       NAVIGATION
+       SIDEBAR TOGGLE — hamburger button, sidebar hidden by default
        ============================================================ -->
-  <nav>
-    <div class="nav-inner">
-      <!-- Geometric bold logo with teal accent dot -->
-      <span class="nav-logo">Abu<span>.</span>Ubaeda</span>
+  <button class="sidebar-toggle" id="sidebar-toggle-btn" aria-label="Open navigation" aria-expanded="false">
+    <svg viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M3 12h18"/><path d="M3 18h18"/></svg>
+  </button>
 
-      <div class="nav-right">
-        <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#education">Education</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#languages">Languages</a></li>
-          <li><a href="#certifications">Certifications</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
+  <!-- ============================================================
+       LEFT ICON SIDEBAR NAVIGATION
+       ============================================================ -->
+  <nav class="sidebar" id="sidebar" aria-label="Section navigation">
+    <div class="sidebar-logo" title="Abu Ubaeda">AU</div>
 
-        <!-- ── DARK MODE TOGGLE ──
-             Checkbox drives CSS variable swap via data-theme on <html>.
-             JS saves the preference to localStorage. -->
-        <label class="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">
-          <input type="checkbox" id="theme-checkbox">
-          <span class="toggle-track"></span>
-          <span class="toggle-thumb"></span>
-        </label>
-      </div>
-    </div>
+    <ul class="sidebar-links">
+      <li>
+        <a href="#about" data-label="About">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+        </a>
+      </li>
+      <li>
+        <a href="#education" data-label="Education">
+          <svg viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5-10-5z"/><path d="M6 11v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/><path d="M22 9v7"/></svg>
+        </a>
+      </li>
+      <li>
+        <a href="#skills" data-label="Skills">
+          <svg viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/><path d="M3 18l9 5 9-5"/></svg>
+        </a>
+      </li>
+      <li>
+        <a href="#languages" data-label="Languages">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 4 5.7 4 9s-1.5 6.5-4 9c-2.5-2.5-4-5.7-4-9s1.5-6.5 4-9z"/></svg>
+        </a>
+      </li>
+      <li>
+        <a href="#certifications" data-label="Certifications">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M8.5 12.5L7 21l5-2.5L17 21l-1.5-8.5"/></svg>
+        </a>
+      </li>
+      <li>
+        <a href="#contact" data-label="Contact">
+          <svg viewBox="0 0 24 24"><path d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><path d="M3 6l9 7 9-7"/></svg>
+        </a>
+      </li>
+    </ul>
   </nav>
+
+  <!-- ── DARK MODE TOGGLE — fixed top-right corner, independent of sidebar ──
+       Checkbox drives CSS variable swap via data-theme on <html>.
+       JS saves the preference to localStorage. -->
+  <label class="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">
+    <input type="checkbox" id="theme-checkbox">
+    <span class="toggle-track"></span>
+    <span class="toggle-thumb"></span>
+  </label>
 
 
   <!-- ============================================================
@@ -721,7 +811,7 @@
               alt="Darunnazat Siddikia Kamil Madrasah logo"
               onerror="this.style.display='none'; this.onerror=null;"
             >
-            <p class="edu-name"><a href="https://dskm.ac.bd/" target="_blank" rel="noopener">Darunnazat Siddiqia Kamil Madrasah</a></p>
+            <p class="edu-name"><a href="https://dskm.ac.bd/" target="_blank" rel="noopener">Darunnazat Siddiqia Kamil Madrasah</a>, Dhaka</p>
             <p class="edu-detail">Alim (Science)</p>
           </div>
         </div>
@@ -736,7 +826,7 @@
               alt="Darunnazat Siddikia Kamil Madrasah logo"
               onerror="this.style.display='none'; this.onerror=null;"
             >
-            <p class="edu-name"><a href="https://dskm.ac.bd/" target="_blank" rel="noopener">Darunnazat Siddiqia Kamil Madrasah</a></p>
+            <p class="edu-name"><a href="https://dskm.ac.bd/" target="_blank" rel="noopener">Darunnazat Siddiqia Kamil Madrasah</a>, Dhaka</p>
             <p class="edu-detail">Dakhil (Science)</p>
           </div>
         </div>
@@ -751,7 +841,7 @@
               alt="Baitur Rasul S.M. logo"
               onerror="this.style.display='none'; this.onerror=null;"
             >
-            <p class="edu-name">Baitur Rasul S.M.</p>
+            <p class="edu-name">Baitur Rasul S.M, Dhaka</p>
             <p class="edu-detail">Secondary level studies</p>
           </div>
         </div>
@@ -994,6 +1084,16 @@
           </div>
         </div>
 
+        <!-- Arabic -->
+        <div class="lang-card sr sr-scale d2">
+          <div class="lang-flag">🇸🇦</div>
+          <div class="lang-info">
+            <p class="lang-name">Arabic</p>
+            <p class="lang-level">Basic</p>
+            <div class="lang-bar"><div class="lang-fill" data-width="25%"></div></div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -1150,7 +1250,7 @@
        FOOTER
        ============================================================ -->
   <footer>
-    <p>© 2026 <strong>Abu Ubaeda</strong> · Rajshahi, Bangladesh · B.Sc. MSE, University of Rajshahi</p>
+    <p>© 2026 <strong>Abu Ubaeda</strong> · Rajshahi, Bangladesh</p>
   </footer>
 
 
@@ -1161,6 +1261,40 @@
        3. Photo upload — FileReader → avatar preview + localStorage
        ============================================================ -->
   <script>
+    /* ----------------------------------------------------------
+       0. SIDEBAR TOGGLE
+       Sidebar is hidden by default. The hamburger button slides
+       it into view; clicking again, clicking a link, or clicking
+       outside the open sidebar closes it.
+    ---------------------------------------------------------- */
+    const sidebar = document.getElementById('sidebar');
+    const sidebarToggleBtn = document.getElementById('sidebar-toggle-btn');
+
+    function setSidebar(open) {
+      sidebar.classList.toggle('open', open);
+      document.body.classList.toggle('sidebar-open', open);
+      sidebarToggleBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      sidebarToggleBtn.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+    }
+
+    sidebarToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setSidebar(!sidebar.classList.contains('open'));
+    });
+
+    sidebar.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => setSidebar(false));
+    });
+
+    document.addEventListener('click', (e) => {
+      if (sidebar.classList.contains('open') &&
+          !sidebar.contains(e.target) &&
+          !sidebarToggleBtn.contains(e.target)) {
+        setSidebar(false);
+      }
+    });
+
+
     /* ----------------------------------------------------------
        1. DARK MODE TOGGLE
        Saves preference to localStorage key "theme".
