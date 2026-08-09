@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -305,7 +305,7 @@
       transition: background var(--t), color var(--t);
     }
 
-    .badge:hover { background: var(--accent); color: #fff; }
+    .badge:hover { background: var(--accent); color: #04211f; }
 
     /* ============================================================
        PHOTO AVATAR
@@ -453,7 +453,8 @@
     .skills-tab.active {
       background: var(--accent);
       border-color: var(--accent);
-      color: #fff;
+      color: #04211f;
+      font-weight: 800;
     }
 
     .skills-panel { display: none; }
@@ -849,6 +850,7 @@
             >
             <p class="edu-name"><a href="https://dskm.ac.bd/" target="_blank" rel="noopener">Darunnazat Siddiqia Kamil Madrasah</a>, Dhaka</p>
             <p class="edu-detail">Alim (Science)</p>
+            <span class="edu-tag">🏅 GPA 5.00 (93% in PCM)</span>
           </div>
         </div>
 
@@ -864,6 +866,7 @@
             >
             <p class="edu-name"><a href="https://dskm.ac.bd/" target="_blank" rel="noopener">Darunnazat Siddiqia Kamil Madrasah</a>, Dhaka</p>
             <p class="edu-detail">Dakhil (Science)</p>
+            <span class="edu-tag">🏅 GPA 4.89</span>
           </div>
         </div>
 
@@ -1424,7 +1427,7 @@
     const themeCheckbox = document.getElementById('theme-checkbox');
     const htmlEl = document.documentElement;
 
-    const savedTheme = localStorage.getItem('site-theme') || 'dark';
+    const savedTheme = localStorage.getItem('site-theme') || 'light';
     htmlEl.setAttribute('data-theme', savedTheme);
     themeCheckbox.checked = (savedTheme === 'dark');
 
