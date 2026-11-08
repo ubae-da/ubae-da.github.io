@@ -4,7 +4,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Abu Ubaeda</title>
+  <title>Abu Ubaeda | Materials Science &amp; Engineering Student, University of Rajshahi</title>
+  <meta name="description" content="Portfolio of Abu Ubaeda, B.Sc. Engineering student in Materials Science and Engineering at the University of Rajshahi, Bangladesh. Coursework, skills, certifications and contact.">
+  <meta property="og:title" content="Abu Ubaeda | Materials Science &amp; Engineering Student">
+  <meta property="og:description" content="B.Sc. Engineering student at the University of Rajshahi. Coursework, skills and certifications.">
+  <meta property="og:type" content="website">
   <link rel="icon" href="profile.jpg" type="image/jpeg">
 
   <!-- Google Fonts: Cinzel Decorative (hero name) + Syne (headings) + Outfit (body) -->
@@ -501,6 +505,45 @@
       height: 100%;
       object-fit: cover;
       border-radius: 50%;
+    }
+
+
+    .note-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.7rem;
+    }
+
+    .btn-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 0.78rem;
+      padding: 0.45rem 1rem;
+      border-radius: var(--radius);
+      border: 1.5px solid var(--accent);
+      color: var(--accent);
+      background: transparent;
+      transition: background var(--t), color var(--t), transform var(--t);
+    }
+
+    .btn-note:hover {
+      background: var(--accent);
+      color: #04211f;
+      transform: translateY(-2px);
+    }
+
+    .btn-note svg {
+      width: 15px;
+      height: 15px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     .edu-list {
@@ -1026,6 +1069,16 @@
         </a>
       </li>
       <li>
+        <a href="#notes" data-label="Study Notes">
+          <svg viewBox="0 0 24 24">
+            <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+            <path d="M14 3v5h5" />
+            <path d="M9 13h6" />
+            <path d="M9 17h6" />
+          </svg>
+        </a>
+      </li>
+      <li>
         <a href="#languages" data-label="Languages">
           <svg viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="9" />
@@ -1129,7 +1182,7 @@
             <p class="edu-name"><a href="https://pust.ac.bd/" target="_blank" rel="noopener">Pabna University of Science
                 and Technology</a></p>
             <p class="edu-detail">Bachelor of Urban and Regional Planning</p>
-            <span class="edu-tag">Left</span>
+            <span class="edu-tag">Discontinued</span>
           </div>
         </div>
 
@@ -1176,110 +1229,148 @@
       <div class="skills-panel active" data-panel="know">
         <div class="skills-categories">
 
-          <div class="skills-grid">
+          <div class="sr sr-up">
+            <div class="skill-category-title">🔷 Materials Science</div>
+            <div class="skills-grid">
 
-            <div class="skill-card sr sr-scale">
+              <div class="skill-card sr sr-scale">
               <div class="skill-icon">🧪</div>
               <p class="skill-name">Introduction to Materials Science and Engineering</p>
               <p class="skill-desc">Understanding of Materials , Types of Solid Materials , Properties of Materials , Solidification of Materials , Diffusion in Solids , Materials Selection and Design .</p>
             </div>
 
-            <div class="skill-card sr sr-scale d1">
+              <div class="skill-card sr sr-scale d1">
               <div class="skill-icon">🔷</div>
               <p class="skill-name">Crystallography-I</p>
               <p class="skill-desc">Crystalline Materials , Crystals and Crystal Structures , Crystal Planes and Directions , Crystal Imperfections .</p>
             </div>
 
-            <div class="skill-card sr sr-scale d2">
-              <div class="skill-icon">➗</div>
-              <p class="skill-name">Matrices, Vector Analysis and Co-ordinate Geometry</p>
-              <p class="skill-desc">Algebra , Matrices , Co-ordinate Geometry of three Dimensions , Vector Analysis .</p>
-            </div>
-
-            <div class="skill-card sr sr-scale d3">
-              <div class="skill-icon">⚡</div>
-              <p class="skill-name">Electricity and Magnetism</p>
-              <p class="skill-desc">Electrostatics , Capacitance and Dielectrics , Thermoelectricity , Electric Current and Resistance , Electromagnetic Induction , A.C. Theory and Frequency Domain Analysis .</p>
-            </div>
-
-            <div class="skill-card sr sr-scale d4">
-              <div class="skill-icon">🧪</div>
-              <p class="skill-name">Organic Chemistry</p>
-              <p class="skill-desc">General Concept , Aliphatic , Alicyclic Compounds , Aromatic compounds , Biochemistry , Stereochemistry .</p>
-            </div>
-
-            <div class="skill-card sr sr-scale d5">
-              <div class="skill-icon">📐</div>
-              <p class="skill-name">Engineering Drawing</p>
-              <p class="skill-desc">Lettering and uses of drawing instruments, Concept of projection, First angle and third angle projection, Orthographic drawing, Axonometric projection, Pictorial drawing, Sectioning, Dimensioning, Introduction to roller cad drawing.</p>
-            </div>
-
-            <div class="skill-card sr sr-scale d6">
+              <div class="skill-card sr sr-scale d2">
               <div class="skill-icon">🔷</div>
               <p class="skill-name">Crystallography-II</p>
               <p class="skill-desc">Crystal Symmetry and Projection , Reciprocal Lattice and Brillouin Zone , Crystal Growth , X-rays and X-ray Diffraction (XRD) .</p>
             </div>
 
-            <div class="skill-card sr sr-scale">
-              <div class="skill-icon">🌊</div>
-              <p class="skill-name">Solid and Fluid Mechanics</p>
-              <p class="skill-desc">Statics , Dynamics , Stress, Strain and Torsion , Properties of Fluid , Pressure and Fluid Statics , Fluid Dynamics and Machinery .</p>
-            </div>
-
-            <div class="skill-card sr sr-scale d1">
-              <div class="skill-icon">📐</div>
-              <p class="skill-name">Calculus and Differential Equations</p>
-              <p class="skill-desc">Functions , Ordinary Differentiations , Expansion of Functions and Applications , Partial Derivatives , Tangent, Normal and Asymptotes , Integrals and Applications , Ordinary Differential Equations , Partial Differential Equations .</p>
-            </div>
-
-            <div class="skill-card sr sr-scale d2">
-              <div class="skill-icon">⚗️</div>
-              <p class="skill-name">Physical and Inorganic Chemistry</p>
-              <p class="skill-desc">Electrochemistry , Chemical Equilibrium and Kinetics , Colloids and Catalyst , Atomic Structure , Electronic Theory of Valence and Chemical Bonding , Solution Chemistry .</p>
-            </div>
-
-            <div class="skill-card sr sr-scale d3">
-              <div class="skill-icon">📈</div>
-              <p class="skill-name">Industrial Economics</p>
-              <p class="skill-desc">Basic Concepts of Economics , Theory of Demand, Supply and Consumer Behaviour , Production and Costs , Theory of the Firm , The Input-Output Analysis , Basic Concepts of Macroeconomics , National Income accounting and determination , Budgets and Planning in Bangladesh .</p>
-            </div>
-
-            <div class="skill-card sr sr-scale d4">
+              <div class="skill-card sr sr-scale d3">
               <div class="skill-icon">🌡️</div>
               <p class="skill-name">Materials Thermodynamics</p>
               <p class="skill-desc">Fundamental concepts , Laws of Thermodynamics , Thermodynamics functions and potentials , Thermodynamic reactions , Thermodynamics in Materials , Thermodynamics of Phase Transitions .</p>
             </div>
 
-            <div class="skill-card sr sr-scale d5">
+              <div class="skill-card sr sr-scale d4">
               <div class="skill-icon">🔋</div>
               <p class="skill-name">Electronic Properties of Materials</p>
               <p class="skill-desc">Fundamentals of Electron Theory , Energy Bands in solids , Electrons in a crystal , Carriers in semiconductors , Carrier Transport Phenomena , PN Junction diode .</p>
             </div>
 
-            <div class="skill-card sr sr-scale d6">
-              <div class="skill-icon">⚡</div>
-              <p class="skill-name">Electrical Engineering</p>
-              <p class="skill-desc">Circuit Models , Circuit Theorem and Network Analysis , Transformer , D.C Machines , A.C Machines .</p>
+            </div>
+          </div>
+
+          <div class="sr sr-up">
+            <div class="skill-category-title">➗ Mathematics</div>
+            <div class="skills-grid">
+
+              <div class="skill-card sr sr-scale">
+              <div class="skill-icon">➗</div>
+              <p class="skill-name">Matrices, Vector Analysis and Co-ordinate Geometry</p>
+              <p class="skill-desc">Algebra , Matrices , Co-ordinate Geometry of three Dimensions , Vector Analysis .</p>
             </div>
 
-            <div class="skill-card sr sr-scale">
+              <div class="skill-card sr sr-scale d1">
+              <div class="skill-icon">📐</div>
+              <p class="skill-name">Calculus and Differential Equations</p>
+              <p class="skill-desc">Functions , Ordinary Differentiations , Expansion of Functions and Applications , Partial Derivatives , Tangent, Normal and Asymptotes , Integrals and Applications , Ordinary Differential Equations , Partial Differential Equations .</p>
+            </div>
+
+              <div class="skill-card sr sr-scale d2">
               <div class="skill-icon">📊</div>
               <p class="skill-name">Numerical, Statistical, and Advanced Mathematical Methods</p>
               <p class="skill-desc">Numerical Analysis , Probability and Statistics , Fourier Transformations , Laplace Transformations , Special Functions .</p>
             </div>
 
-            <div class="skill-card sr sr-scale d1">
+            </div>
+          </div>
+
+          <div class="sr sr-up">
+            <div class="skill-category-title">⚡ Physics &amp; Electrical Engineering</div>
+            <div class="skills-grid">
+
+              <div class="skill-card sr sr-scale">
+              <div class="skill-icon">⚡</div>
+              <p class="skill-name">Electricity and Magnetism</p>
+              <p class="skill-desc">Electrostatics , Capacitance and Dielectrics , Thermoelectricity , Electric Current and Resistance , Electromagnetic Induction , A.C. Theory and Frequency Domain Analysis .</p>
+            </div>
+
+              <div class="skill-card sr sr-scale d1">
               <div class="skill-icon">🌈</div>
               <p class="skill-name">Waves, Optics and Optical Properties</p>
               <p class="skill-desc">Waves , Oscillations , Optical Properties , Interference of light , Diffraction of light , Polarization of light .</p>
             </div>
 
-            <div class="skill-card sr sr-scale d2">
+              <div class="skill-card sr sr-scale d2">
+              <div class="skill-icon">⚡</div>
+              <p class="skill-name">Electrical Engineering</p>
+              <p class="skill-desc">Circuit Models , Circuit Theorem and Network Analysis , Transformer , D.C Machines , A.C Machines .</p>
+            </div>
+
+            </div>
+          </div>
+
+          <div class="sr sr-up">
+            <div class="skill-category-title">🌊 Mechanics</div>
+            <div class="skills-grid">
+
+              <div class="skill-card sr sr-scale">
+              <div class="skill-icon">🌊</div>
+              <p class="skill-name">Solid and Fluid Mechanics</p>
+              <p class="skill-desc">Statics , Dynamics , Stress, Strain and Torsion , Properties of Fluid , Pressure and Fluid Statics , Fluid Dynamics and Machinery .</p>
+            </div>
+
+            </div>
+          </div>
+
+          <div class="sr sr-up">
+            <div class="skill-category-title">⚗️ Chemistry</div>
+            <div class="skills-grid">
+
+              <div class="skill-card sr sr-scale">
+              <div class="skill-icon">🧪</div>
+              <p class="skill-name">Organic Chemistry</p>
+              <p class="skill-desc">General Concept , Aliphatic , Alicyclic Compounds , Aromatic compounds , Biochemistry , Stereochemistry .</p>
+            </div>
+
+              <div class="skill-card sr sr-scale d1">
+              <div class="skill-icon">⚗️</div>
+              <p class="skill-name">Physical and Inorganic Chemistry</p>
+              <p class="skill-desc">Electrochemistry , Chemical Equilibrium and Kinetics , Colloids and Catalyst , Atomic Structure , Electronic Theory of Valence and Chemical Bonding , Solution Chemistry .</p>
+            </div>
+
+            </div>
+          </div>
+
+          <div class="sr sr-up">
+            <div class="skill-category-title">📐 Engineering, Economics &amp; Management</div>
+            <div class="skills-grid">
+
+              <div class="skill-card sr sr-scale">
+              <div class="skill-icon">📐</div>
+              <p class="skill-name">Engineering Drawing</p>
+              <p class="skill-desc">Lettering and uses of drawing instruments, Concept of projection, First angle and third angle projection, Orthographic drawing, Axonometric projection, Pictorial drawing, Sectioning, Dimensioning, Introduction to roller cad drawing.</p>
+            </div>
+
+              <div class="skill-card sr sr-scale d1">
+              <div class="skill-icon">📈</div>
+              <p class="skill-name">Industrial Economics</p>
+              <p class="skill-desc">Basic Concepts of Economics , Theory of Demand, Supply and Consumer Behaviour , Production and Costs , Theory of the Firm , The Input-Output Analysis , Basic Concepts of Macroeconomics , National Income accounting and determination , Budgets and Planning in Bangladesh .</p>
+            </div>
+
+              <div class="skill-card sr sr-scale d2">
               <div class="skill-icon">🏢</div>
               <p class="skill-name">Industrial Management and Accountancy</p>
               <p class="skill-desc">Fundamentals of Management , Factory Location and Plant Layout , Work-Environment and Plant Utility , Man Power Planning and Motivation , Accounting and Transaction , Cost Terms Concepts and Classification , Cost-Volume-Profit Relationship .</p>
             </div>
 
+            </div>
           </div>
 
           <div class="sr sr-up">
@@ -1491,6 +1582,43 @@
     </div>
   </section>
 
+  <section id="notes">
+    <div class="container">
+      <div class="section-label">Study Notes</div>
+      <h2 class="section-heading">Course Notes</h2>
+
+      <div class="edu-list">
+
+        <!-- To add another note: copy this whole edu-item block, change the code, title, course name and the two file paths. -->
+        <div class="edu-item sr sr-left">
+          <span class="edu-year">CHEM1211</span>
+          <div>
+            <p class="edu-name">4 – Atomic Structure</p>
+            <p class="edu-detail">Physical &amp; Inorganic Chemistry</p>
+            <div class="note-actions">
+              <a class="btn-note" href="notes/CHEM1211%20C4%20Atomic%20Structure%20by%20Ubaeda%20.pdf" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+                View
+              </a>
+              <a class="btn-note" href="notes/CHEM1211%20C4%20Atomic%20Structure%20by%20Ubaeda%20.pdf" download="CHEM1211_Atomic_Structure_Abu_Ubaeda.pdf">
+                <svg viewBox="0 0 24 24">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                Download
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <section id="languages">
     <div class="container">
       <div class="section-label">Languages</div>
@@ -1555,28 +1683,28 @@
         <div class="edu-item sr sr-left d1">
           <span class="edu-year">2026</span>
           <div>
-            <p class="edu-name">Workshop on Islamic Dawah and Dialogue</p>
-            <p class="edu-detail">Certificate of Participation · Rajshahi University Dawah Community (RUDC)</p>
-            <span class="edu-tag">📅 16 May, 2026</span>
-          </div>
-        </div>
-
-        <div class="edu-item sr sr-left d2">
-          <span class="edu-year">2026</span>
-          <div>
             <p class="edu-name">Prompt Engineering: The Key to AI Communication</p>
             <p class="edu-detail">Certificate of Participation · Rajshahi University Science Club (RUSC)</p>
             <span class="edu-tag">📅 15 March, 2026</span>
           </div>
         </div>
 
-        <div class="edu-item sr sr-left d3">
+        <div class="edu-item sr sr-left d2">
           <span class="edu-year">2026</span>
           <div>
             <p class="edu-name">Cyber Threats &amp; Digital Defence</p>
             <p class="edu-detail">Certificate of Participation · RUCSU – Rajshahi University Central Students' Union,
               under the Division of Science &amp; Technology, in collaboration with Rajshahi University Science Club</p>
             <span class="edu-tag">📅 31 January, 2026</span>
+          </div>
+        </div>
+
+        <div class="edu-item sr sr-left d3">
+          <span class="edu-year">2026</span>
+          <div>
+            <p class="edu-name">Workshop on Islamic Dawah and Dialogue</p>
+            <p class="edu-detail">Certificate of Participation · Rajshahi University Dawah Community (RUDC)</p>
+            <span class="edu-tag">📅 16 May, 2026</span>
           </div>
         </div>
 
@@ -1646,31 +1774,31 @@
           </div>
         </div>
 
-        <div class="contact-item sr sr-up d5">
+        <!-- <div class="contact-item sr sr-up d5">
           <div class="contact-icon">💬</div>
           <div>
             <p class="contact-label">WhatsApp</p>
             <p class="contact-value"><a href="https://wa.me/8801571505487" target="_blank"
                 rel="noopener">@mdabuubaeda</a></p>
           </div>
-        </div>
+        </div> -->
 
-        <div class="contact-item sr sr-up d6">
+        <!-- <div class="contact-item sr sr-up d6">
           <div class="contact-icon">✈️</div>
           <div>
             <p class="contact-label">Telegram</p>
             <p class="contact-value"><a href="https://t.me/Ubaedaru" target="_blank" rel="noopener">@Ubaedaru</a></p>
           </div>
-        </div>
+        </div> -->
 
-        <div class="contact-item sr sr-up d6">
+        <!-- <div class="contact-item sr sr-up d6">
           <div class="contact-icon">📘</div>
           <div>
             <p class="contact-label">Facebook</p>
             <p class="contact-value"><a href="https://www.facebook.com/mdabu.ubaeda/" target="_blank"
                 rel="noopener">mdabu.ubaeda</a></p>
           </div>
-        </div>
+        </div> -->
 
       </div>
     </div>
