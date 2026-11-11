@@ -432,33 +432,6 @@
       stroke-linejoin: round;
     }
 
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 1.8rem;
-      opacity: 0;
-      animation: fadeUp 0.6s ease 1.1s forwards;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      font-size: 0.76rem;
-      font-weight: 500;
-      padding: 0.28rem 0.7rem;
-      border-radius: 999px;
-      transition: background var(--t), color var(--t);
-    }
-
-    .badge:hover {
-      background: var(--accent);
-      color: #04211f;
-    }
-
     .hero-photo-wrap {
       flex-shrink: 0;
       display: flex;
@@ -507,7 +480,6 @@
       border-radius: 50%;
     }
 
-
     .note-actions {
       display: flex;
       flex-wrap: wrap;
@@ -528,6 +500,7 @@
       color: var(--accent);
       background: transparent;
       transition: background var(--t), color var(--t), transform var(--t);
+      cursor: pointer;
     }
 
     .btn-note:hover {
@@ -645,11 +618,63 @@
       transition: background var(--t), color var(--t);
     }
 
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color var(--t), transform var(--t), box-shadow var(--t), background var(--t);
+      cursor: default;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .project-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.6rem;
+    }
+
+    .project-icon {
+      font-size: 1.5rem;
+    }
+
+    .project-title {
+      font-family: var(--font-head);
+      font-size: 0.92rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+      color: var(--ink);
+      text-align: left;
+    }
+
+    .project-desc {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: 0.8rem;
+      text-align: justify;
+    }
+
     .skills-tabs {
       display: flex;
       gap: 0.7rem;
       flex-wrap: wrap;
-      margin-bottom: 2.4rem;
+      margin-bottom: 2rem;
     }
 
     .skills-tab {
@@ -689,7 +714,7 @@
     .skills-categories {
       display: flex;
       flex-direction: column;
-      gap: 2.5rem;
+      gap: 1.5rem;
     }
 
     .skill-category-title {
@@ -754,6 +779,250 @@
       line-height: 1.55;
       transition: color var(--t);
       text-align: justify;
+    }
+
+    /* Expandable Accordion Subtopics Styles (Inspired by DU Website) */
+    .course-accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .accordion-item {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color var(--t), box-shadow var(--t);
+    }
+
+    .accordion-item[open] {
+      border-color: var(--accent);
+      box-shadow: var(--shadow2);
+    }
+
+    .accordion-header {
+      padding: 1rem 1.4rem;
+      font-family: var(--font-head);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--ink);
+      background: var(--surface);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+      list-style: none;
+      transition: background var(--t), color var(--t);
+    }
+
+    .accordion-header::-webkit-details-marker {
+      display: none;
+    }
+
+    .accordion-header:hover {
+      color: var(--accent);
+      background: var(--surface2);
+    }
+
+    .accordion-title-group {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .accordion-icon-chevron {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: transform var(--t);
+    }
+
+    .accordion-item[open] .accordion-icon-chevron {
+      transform: rotate(180deg);
+    }
+
+    .accordion-content {
+      padding: 1.2rem 1.4rem 1.4rem;
+      border-top: 1px solid var(--rule);
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .course-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.75rem 1rem;
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      transition: border-color var(--t), background var(--t), transform var(--t);
+    }
+
+    .course-row:hover {
+      border-color: var(--accent);
+      transform: translateX(4px);
+    }
+
+    .course-info {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .course-icon {
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .course-title {
+      font-family: var(--font-head);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .btn-details {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: var(--font-head);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: var(--accent-lt);
+      border: 1px solid var(--accent);
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background var(--t), color var(--t), transform var(--t);
+      flex-shrink: 0;
+    }
+
+    .btn-details:hover {
+      background: var(--accent);
+      color: #04211f;
+      transform: translateY(-1px);
+    }
+
+    /* Modal for Course Details (like Website Preview/Details) */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(15, 25, 35, 0.65);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--t);
+    }
+
+    .modal-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      max-width: 580px;
+      width: 100%;
+      padding: 1.8rem;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+      position: relative;
+      transform: translateY(20px) scale(0.96);
+      transition: transform var(--t);
+    }
+
+    .modal-backdrop.open .modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 0.4rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color var(--t), background var(--t);
+    }
+
+    .modal-close:hover {
+      color: var(--accent);
+      background: var(--accent-lt);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      padding-right: 2rem;
+    }
+
+    .modal-icon {
+      font-size: 1.8rem;
+    }
+
+    .modal-title {
+      font-family: var(--font-head);
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .modal-body {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .modal-body h4 {
+      font-family: var(--font-head);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-topics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.8rem;
+    }
+
+    .topic-tag {
+      background: var(--surface2);
+      color: var(--ink);
+      border: 1px solid var(--rule);
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
     }
 
     .lang-grid {
@@ -1024,6 +1293,54 @@
         top: 0.85rem;
         right: 0.9rem;
       }
+
+      .course-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+
+      .btn-details {
+        align-self: flex-end;
+      }
+    }
+  
+    /* ── Card shade: soft gradient + accent top bar ── */
+    :root {
+      --card-tint: #e6f1f5;
+      --card-bar: var(--accent);
+    }
+
+    [data-theme="dark"] {
+      --card-tint: #1b2b38;
+    }
+
+    .project-card,
+    .skill-card,
+    .lang-card,
+    .contact-item,
+    .accordion-item {
+      background: linear-gradient(180deg, var(--surface) 0%, var(--card-tint) 100%);
+      border-bottom: 3px solid var(--card-bar);
+      box-shadow: var(--shadow2);
+    }
+
+    .accordion-header {
+      background: transparent;
+    }
+
+    .project-card:hover,
+    .skill-card:hover,
+    .lang-card:hover,
+    .contact-item:hover {
+      border-bottom-color: var(--card-bar);
+    }
+
+    /* Long course cards: accent on the left side only */
+    .accordion-item,
+    .accordion-item[open] {
+      border-bottom: 1px solid var(--rule);
+      border-left: 4px solid var(--card-bar);
     }
   </style>
 </head>
@@ -1056,6 +1373,13 @@
             <path d="M2 9l10-5 10 5-10 5-10-5z" />
             <path d="M6 11v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5" />
             <path d="M22 9v7" />
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a href="#projects" data-label="Projects">
+          <svg viewBox="0 0 24 24">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
           </svg>
         </a>
       </li>
@@ -1129,7 +1453,7 @@
         <div>
           <div class="section-label">About Me</div>
           <h1 class="hero-name">Abu <span class="accent">Ubaeda</span></h1>
-          <p class="hero-role">Undergraduate Student · Materials Science & Engineering. University of Rajshahi</p>
+          <p class="hero-role">Undergraduate Student · Materials Science &amp; Engineering. University of Rajshahi</p>
 
           <p class="hero-bio">
             I’m an undergraduate student in Materials Science and Engineering at the University of Rajshahi
@@ -1226,6 +1550,39 @@
     </div>
   </section>
 
+  <section id="projects">
+    <div class="container">
+      <div class="section-label">Projects</div>
+      <h2 class="section-heading">Featured Works</h2>
+
+      <div class="projects-grid">
+        <div class="project-card sr sr-scale">
+          <div>
+            <div class="project-header">
+              <span class="project-icon">🌐</span>
+              <a href="https://github.com/ubae-da/ubae-da.github.io" target="_blank" rel="noopener" class="btn-note" style="padding: 0.3rem 0.7rem; font-size: 0.72rem;">
+                <svg viewBox="0 0 24 24" style="width: 13px; height: 13px;">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+                GitHub Repo
+              </a>
+            </div>
+            <h3 class="project-title">Personal Portfolio &amp; Academic Hub</h3>
+            <p class="project-desc">
+              Personal website built to showcase academic coursework, study notes, technical skills, and certifications in Materials Science &amp; Engineering.
+            </p>
+          </div>
+          <div>
+            <span class="edu-tag">HTML5 / CSS3 / JavaScript</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <section id="skills">
     <div class="container">
       <div class="section-label">Skills</div>
@@ -1295,301 +1652,495 @@
         <button class="skills-tab" data-tab="learning" role="tab" aria-selected="false">In Progress</button>
       </div>
 
+      <!-- COMPLETED COURSEWORK PANEL -->
       <div class="skills-panel active" data-panel="know">
-        <div class="skills-categories">
+        <div class="course-accordion">
 
-          <div class="sr sr-up">
-            <div class="skill-category-title">🔷 Materials Science</div>
-            <div class="skills-grid">
+          <!-- Materials Science -->
+          <details class="accordion-item">
+            <summary class="accordion-header">
+              <span class="accordion-title-group">🔷 Materials Science</span>
+              <svg class="accordion-icon-chevron" viewBox="0 0 24 24">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="accordion-content">
+              
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">🧪</span>
+                  <span class="course-title">Introduction to Materials Science and Engineering</span>
+                </div>
+                <button class="btn-details" data-name="Introduction to Materials Science and Engineering" data-topics="Understanding of Materials, Types of Solid Materials, Properties of Materials, Solidification of Materials, Diffusion in Solids, Materials Selection and Design">Details</button>
+              </div>
 
-              <div class="skill-card sr sr-scale">
-              <div class="skill-icon">🧪</div>
-              <p class="skill-name">Introduction to Materials Science and Engineering</p>
-              <p class="skill-desc">Understanding of Materials , Types of Solid Materials , Properties of Materials , Solidification of Materials , Diffusion in Solids , Materials Selection and Design .</p>
-            </div>
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">🔷</span>
+                  <span class="course-title">Crystallography-I</span>
+                </div>
+                <button class="btn-details" data-name="Crystallography-I" data-topics="Crystalline Materials, Crystals and Crystal Structures, Crystal Planes and Directions, Crystal Imperfections">Details</button>
+              </div>
 
-              <div class="skill-card sr sr-scale d1">
-              <div class="skill-icon">🔷</div>
-              <p class="skill-name">Crystallography-I</p>
-              <p class="skill-desc">Crystalline Materials , Crystals and Crystal Structures , Crystal Planes and Directions , Crystal Imperfections .</p>
-            </div>
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">🔷</span>
+                  <span class="course-title">Crystallography-II</span>
+                </div>
+                <button class="btn-details" data-name="Crystallography-II" data-topics="Crystal Symmetry and Projection, Reciprocal Lattice and Brillouin Zone, Crystal Growth, X-rays and X-ray Diffraction (XRD)">Details</button>
+              </div>
 
-              <div class="skill-card sr sr-scale d2">
-              <div class="skill-icon">🔷</div>
-              <p class="skill-name">Crystallography-II</p>
-              <p class="skill-desc">Crystal Symmetry and Projection , Reciprocal Lattice and Brillouin Zone , Crystal Growth , X-rays and X-ray Diffraction (XRD) .</p>
-            </div>
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">🌊</span>
+                  <span class="course-title">Solid and Fluid Mechanics</span>
+                </div>
+                <button class="btn-details" data-name="Solid and Fluid Mechanics" data-topics="Statics, Dynamics, Stress Strain and Torsion, Properties of Fluid, Pressure and Fluid Statics, Fluid Dynamics and Machinery">Details</button>
+              </div>
 
-              <div class="skill-card sr sr-scale d3">
-              <div class="skill-icon">🌊</div>
-              <p class="skill-name">Solid and Fluid Mechanics</p>
-              <p class="skill-desc">Statics , Dynamics , Stress, Strain and Torsion , Properties of Fluid , Pressure and Fluid Statics , Fluid Dynamics and Machinery .</p>
-            </div>
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">🌡️</span>
+                  <span class="course-title">Materials Thermodynamics</span>
+                </div>
+                <button class="btn-details" data-name="Materials Thermodynamics" data-topics="Fundamental concepts, Laws of Thermodynamics, Thermodynamics functions and potentials, Thermodynamic reactions, Thermodynamics in Materials, Thermodynamics of Phase Transitions">Details</button>
+              </div>
 
-              <div class="skill-card sr sr-scale d4">
-              <div class="skill-icon">🌡️</div>
-              <p class="skill-name">Materials Thermodynamics</p>
-              <p class="skill-desc">Fundamental concepts , Laws of Thermodynamics , Thermodynamics functions and potentials , Thermodynamic reactions , Thermodynamics in Materials , Thermodynamics of Phase Transitions .</p>
-            </div>
-
-              <div class="skill-card sr sr-scale d5">
-              <div class="skill-icon">🔋</div>
-              <p class="skill-name">Electronic Properties of Materials</p>
-              <p class="skill-desc">Fundamentals of Electron Theory , Energy Bands in solids , Electrons in a crystal , Carriers in semiconductors , Carrier Transport Phenomena , PN Junction diode .</p>
-            </div>
-
-            </div>
-          </div>
-
-          <div class="sr sr-up">
-            <div class="skill-category-title">➗ Mathematics</div>
-            <div class="skills-grid">
-
-              <div class="skill-card sr sr-scale">
-              <div class="skill-icon">➗</div>
-              <p class="skill-name">Matrices, Vector Analysis and Co-ordinate Geometry</p>
-              <p class="skill-desc">Algebra , Matrices , Co-ordinate Geometry of three Dimensions , Vector Analysis .</p>
-            </div>
-
-              <div class="skill-card sr sr-scale d1">
-              <div class="skill-icon">📐</div>
-              <p class="skill-name">Calculus and Differential Equations</p>
-              <p class="skill-desc">Functions , Ordinary Differentiations , Expansion of Functions and Applications , Partial Derivatives , Tangent, Normal and Asymptotes , Integrals and Applications , Ordinary Differential Equations , Partial Differential Equations .</p>
-            </div>
-
-              <div class="skill-card sr sr-scale d2">
-              <div class="skill-icon">📊</div>
-              <p class="skill-name">Numerical, Statistical, and Advanced Mathematical Methods</p>
-              <p class="skill-desc">Numerical Analysis , Probability and Statistics , Fourier Transformations , Laplace Transformations , Special Functions .</p>
-            </div>
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">🔋</span>
+                  <span class="course-title">Electronic Properties of Materials</span>
+                </div>
+                <button class="btn-details" data-name="Electronic Properties of Materials" data-topics="Fundamentals of Electron Theory, Energy Bands in solids, Electrons in a crystal, Carriers in semiconductors, Carrier Transport Phenomena, PN Junction diode">Details</button>
+              </div>
 
             </div>
-          </div>
+          </details>
 
-          <div class="sr sr-up">
-            <div class="skill-category-title">⚡ Physics &amp; Electrical Engineering</div>
-            <div class="skills-grid">
+          <!-- Mathematics -->
+          <details class="accordion-item">
+            <summary class="accordion-header">
+              <span class="accordion-title-group">➗ Mathematics</span>
+              <svg class="accordion-icon-chevron" viewBox="0 0 24 24">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="accordion-content">
+              
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">➗</span>
+                  <span class="course-title">Matrices, Vector Analysis and Co-ordinate Geometry</span>
+                </div>
+                <button class="btn-details" data-name="Matrices, Vector Analysis and Co-ordinate Geometry" data-topics="Algebra, Matrices, Co-ordinate Geometry of three Dimensions, Vector Analysis">Details</button>
+              </div>
 
-              <div class="skill-card sr sr-scale">
-              <div class="skill-icon">⚡</div>
-              <p class="skill-name">Electricity and Magnetism</p>
-              <p class="skill-desc">Electrostatics , Capacitance and Dielectrics , Thermoelectricity , Electric Current and Resistance , Electromagnetic Induction , A.C. Theory and Frequency Domain Analysis .</p>
-            </div>
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">📐</span>
+                  <span class="course-title">Calculus and Differential Equations</span>
+                </div>
+                <button class="btn-details" data-name="Calculus and Differential Equations" data-topics="Functions, Ordinary Differentiations, Expansion of Functions and Applications, Partial Derivatives, Tangent Normal and Asymptotes, Integrals and Applications, Ordinary Differential Equations, Partial Differential Equations">Details</button>
+              </div>
 
-              <div class="skill-card sr sr-scale d1">
-              <div class="skill-icon">🌈</div>
-              <p class="skill-name">Waves, Optics and Optical Properties</p>
-              <p class="skill-desc">Waves , Oscillations , Optical Properties , Interference of light , Diffraction of light , Polarization of light .</p>
-            </div>
-
-              <div class="skill-card sr sr-scale d2">
-              <div class="skill-icon">⚡</div>
-              <p class="skill-name">Electrical Engineering</p>
-              <p class="skill-desc">Circuit Models , Circuit Theorem and Network Analysis , Transformer , D.C Machines , A.C Machines .</p>
-            </div>
-
-            </div>
-          </div>
-
-          <div class="sr sr-up">
-            <div class="skill-category-title">⚗️ Chemistry</div>
-            <div class="skills-grid">
-
-              <div class="skill-card sr sr-scale">
-              <div class="skill-icon">🧪</div>
-              <p class="skill-name">Organic Chemistry</p>
-              <p class="skill-desc">General Concept , Aliphatic , Alicyclic Compounds , Aromatic compounds , Biochemistry , Stereochemistry .</p>
-            </div>
-
-              <div class="skill-card sr sr-scale d1">
-              <div class="skill-icon">⚗️</div>
-              <p class="skill-name">Physical and Inorganic Chemistry</p>
-              <p class="skill-desc">Electrochemistry , Chemical Equilibrium and Kinetics , Colloids and Catalyst , Atomic Structure , Electronic Theory of Valence and Chemical Bonding , Solution Chemistry .</p>
-            </div>
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">📊</span>
+                  <span class="course-title">Numerical, Statistical, and Advanced Mathematical Methods</span>
+                </div>
+                <button class="btn-details" data-name="Numerical, Statistical, and Advanced Mathematical Methods" data-topics="Numerical Analysis, Probability and Statistics, Fourier Transformations, Laplace Transformations, Special Functions">Details</button>
+              </div>
 
             </div>
-          </div>
+          </details>
 
-          <div class="sr sr-up">
-            <div class="skill-category-title">📐 Engineering, Economics &amp; Management</div>
-            <div class="skills-grid">
+          <!-- Physics -->
+          <details class="accordion-item">
+            <summary class="accordion-header">
+              <span class="accordion-title-group">🌌 Physics</span>
+              <svg class="accordion-icon-chevron" viewBox="0 0 24 24">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="accordion-content">
+              
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">⚡</span>
+                  <span class="course-title">Electricity and Magnetism</span>
+                </div>
+                <button class="btn-details" data-name="Electricity and Magnetism" data-topics="Electrostatics, Capacitance and Dielectrics, Thermoelectricity, Electric Current and Resistance, Electromagnetic Induction, A.C. Theory and Frequency Domain Analysis">Details</button>
+              </div>
 
-              <div class="skill-card sr sr-scale">
-              <div class="skill-icon">📐</div>
-              <p class="skill-name">Engineering Drawing</p>
-              <p class="skill-desc">Lettering and uses of drawing instruments, Concept of projection, First angle and third angle projection, Orthographic drawing, Axonometric projection, Pictorial drawing, Sectioning, Dimensioning, Introduction to roller cad drawing.</p>
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">🌈</span>
+                  <span class="course-title">Waves, Optics and Optical Properties</span>
+                </div>
+                <button class="btn-details" data-name="Waves, Optics and Optical Properties" data-topics="Waves, Oscillations, Optical Properties, Interference of light, Diffraction of light, Polarization of light">Details</button>
+              </div>
+
             </div>
+          </details>
 
-              <div class="skill-card sr sr-scale d1">
-              <div class="skill-icon">📈</div>
-              <p class="skill-name">Industrial Economics</p>
-              <p class="skill-desc">Basic Concepts of Economics , Theory of Demand, Supply and Consumer Behaviour , Production and Costs , Theory of the Firm , The Input-Output Analysis , Basic Concepts of Macroeconomics , National Income accounting and determination , Budgets and Planning in Bangladesh .</p>
+          <!-- Electrical Engineering -->
+          <details class="accordion-item">
+            <summary class="accordion-header">
+              <span class="accordion-title-group">⚡ Electrical Engineering</span>
+              <svg class="accordion-icon-chevron" viewBox="0 0 24 24">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="accordion-content">
+              
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">⚡</span>
+                  <span class="course-title">Electrical Engineering</span>
+                </div>
+                <button class="btn-details" data-name="Electrical Engineering" data-topics="Circuit Models, Circuit Theorem and Network Analysis, Transformer, D.C Machines, A.C Machines">Details</button>
+              </div>
+
             </div>
+          </details>
 
-              <div class="skill-card sr sr-scale d2">
-              <div class="skill-icon">🏢</div>
-              <p class="skill-name">Industrial Management and Accountancy</p>
-              <p class="skill-desc">Fundamentals of Management , Factory Location and Plant Layout , Work-Environment and Plant Utility , Man Power Planning and Motivation , Accounting and Transaction , Cost Terms Concepts and Classification , Cost-Volume-Profit Relationship .</p>
+          <!-- Chemistry -->
+          <details class="accordion-item">
+            <summary class="accordion-header">
+              <span class="accordion-title-group">⚗️ Chemistry</span>
+              <svg class="accordion-icon-chevron" viewBox="0 0 24 24">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="accordion-content">
+              
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">🧪</span>
+                  <span class="course-title">Organic Chemistry</span>
+                </div>
+                <button class="btn-details" data-name="Organic Chemistry" data-topics="General Concept, Aliphatic, Alicyclic Compounds, Aromatic compounds, Biochemistry, Stereochemistry">Details</button>
+              </div>
+
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">⚗️</span>
+                  <span class="course-title">Physical and Inorganic Chemistry</span>
+                </div>
+                <button class="btn-details" data-name="Physical and Inorganic Chemistry" data-topics="Electrochemistry, Chemical Equilibrium and Kinetics, Colloids and Catalyst, Atomic Structure, Electronic Theory of Valence and Chemical Bonding, Solution Chemistry">Details</button>
+              </div>
+
             </div>
+          </details>
+
+          <!-- Engineering, Economics & Management -->
+          <details class="accordion-item">
+            <summary class="accordion-header">
+              <span class="accordion-title-group">📐 Engineering, Economics &amp; Management</span>
+              <svg class="accordion-icon-chevron" viewBox="0 0 24 24">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="accordion-content">
+              
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">📐</span>
+                  <span class="course-title">Engineering Drawing</span>
+                </div>
+                <button class="btn-details" data-name="Engineering Drawing" data-topics="Lettering and uses of drawing instruments, Concept of projection, First angle and third angle projection, Orthographic drawing, Axonometric projection, Pictorial drawing, Sectioning, Dimensioning, Introduction to roller cad drawing">Details</button>
+              </div>
+
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">📈</span>
+                  <span class="course-title">Industrial Economics</span>
+                </div>
+                <button class="btn-details" data-name="Industrial Economics" data-topics="Basic Concepts of Economics, Theory of Demand Supply and Consumer Behaviour, Production and Costs, Theory of the Firm, The Input-Output Analysis, Basic Concepts of Macroeconomics, National Income accounting and determination, Budgets and Planning in Bangladesh">Details</button>
+              </div>
+
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">🏢</span>
+                  <span class="course-title">Industrial Management and Accountancy</span>
+                </div>
+                <button class="btn-details" data-name="Industrial Management and Accountancy" data-topics="Fundamentals of Management, Factory Location and Plant Layout, Work-Environment and Plant Utility, Man Power Planning and Motivation, Accounting and Transaction, Cost Terms Concepts and Classification, Cost-Volume-Profit Relationship">Details</button>
+              </div>
 
             </div>
-          </div>
+          </details>
 
-                  </div>
+        </div>
       </div>
 
+      <!-- IN PROGRESS PANEL -->
       <div class="skills-panel" data-panel="learning">
-        <div class="skills-grid">
+        <div class="course-accordion">
 
-          <div class="skill-card sr sr-scale">
-            <div class="skill-icon">📊</div>
-            <p class="skill-name">Phase Diagram and Microstructure of Materials</p>
-            <p class="skill-desc">Phase Diagrams , Binary Phase Diagrams of Alloys Systems , Ternary and Multiphase Phase Diagrams , Microstructure of Materials , Metallography .</p>
-          </div>
+          <!-- Materials Fundamentals & Transport -->
+          <details class="accordion-item">
+            <summary class="accordion-header">
+              <span class="accordion-title-group">🔬 Materials Structure &amp; Transport</span>
+              <svg class="accordion-icon-chevron" viewBox="0 0 24 24">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="accordion-content">
+              
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">📊</span>
+                  <span class="course-title">Phase Diagram and Microstructure of Materials</span>
+                </div>
+                <button class="btn-details" data-name="Phase Diagram and Microstructure of Materials" data-topics="Phase Diagrams, Binary Phase Diagrams of Alloys Systems, Ternary and Multiphase Phase Diagrams, Microstructure of Materials, Metallography">Details</button>
+              </div>
 
-          <div class="skill-card sr sr-scale d1">
-            <div class="skill-icon">🔄</div>
-            <p class="skill-name">Transport and Kinetic Phenomena in Materials</p>
-            <p class="skill-desc">Basic Heat Transfer Principles , Steady-state Conduction , Transient Conduction and Convection , Heat Exchangers , Radiation , Mass Transfer and Kinetics .</p>
-          </div>
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">🔄</span>
+                  <span class="course-title">Transport and Kinetic Phenomena in Materials</span>
+                </div>
+                <button class="btn-details" data-name="Transport and Kinetic Phenomena in Materials" data-topics="Basic Heat Transfer Principles, Steady-state Conduction, Transient Conduction and Convection, Heat Exchangers, Radiation, Mass Transfer and Kinetics">Details</button>
+              </div>
 
-          <div class="skill-card sr sr-scale d2">
-            <div class="skill-icon">⚙️</div>
-            <p class="skill-name">Mechanical Properties of Materials</p>
-            <p class="skill-desc">Dislocations in Crystals , Deformation of metals and alloys , Elastic and Plastic Properties of Materials , Creep , Fatigue , Fracture .</p>
-          </div>
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">⚙️</span>
+                  <span class="course-title">Mechanical Properties of Materials</span>
+                </div>
+                <button class="btn-details" data-name="Mechanical Properties of Materials" data-topics="Dislocations in Crystals, Deformation of metals and alloys, Elastic and Plastic Properties of Materials, Creep, Fatigue, Fracture">Details</button>
+              </div>
 
-          <div class="skill-card sr sr-scale d3">
-            <div class="skill-icon">⚛️</div>
-            <p class="skill-name">Electronics and Microfabrication</p>
-            <p class="skill-desc">Wafer Preparation , Basic Patterning , Advanced Lithography , Semiconductor Diodes and Transistor , Field effect transistor (FET) , Feedback and Oscillators .</p>
-          </div>
+            </div>
+          </details>
 
-          <div class="skill-card sr sr-scale d4">
-            <div class="skill-icon">⚖️</div>
-            <p class="skill-name">Law and Professional Ethics</p>
-            <p class="skill-desc">Law , Company law , Labor Law , History and Development of Engineering Ethics , Ethical Expectations .</p>
-          </div>
+          <!-- Electronics & Advanced Manufacturing -->
+          <details class="accordion-item">
+            <summary class="accordion-header">
+              <span class="accordion-title-group">⚛️ Electronics &amp; Microfabrication</span>
+              <svg class="accordion-icon-chevron" viewBox="0 0 24 24">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="accordion-content">
+              
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">⚛️</span>
+                  <span class="course-title">Electronics and Microfabrication</span>
+                </div>
+                <button class="btn-details" data-name="Electronics and Microfabrication" data-topics="Wafer Preparation, Basic Patterning, Advanced Lithography, Semiconductor Diodes and Transistor, Field effect transistor (FET), Feedback and Oscillators">Details</button>
+              </div>
 
-          <div class="skill-card sr sr-scale d5">
-            <div class="skill-icon">🧵</div>
-            <p class="skill-name">Polymeric Materials</p>
-            <p class="skill-desc">Concept of Polymer , Polymer Formation Reactions , Specialty Polymers , Characterization of Polymers , Structure and Rheology of Polymers , Analysis and Testing of Polymers .</p>
-          </div>
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">🔋</span>
+                  <span class="course-title">Electrochemical Engineering</span>
+                </div>
+                <button class="btn-details" data-name="Electrochemical Engineering" data-topics="Electrode Processes, Potentials and Thermodynamics of Cells, Kinetics of Electrode Reactions, Electrodeposition of Metals, Electrodes and Cell Design for Industrial Processes, Electroplating">Details</button>
+              </div>
 
-          <div class="skill-card sr sr-scale d6">
-            <div class="skill-icon">🔋</div>
-            <p class="skill-name">Electrochemical Engineering</p>
-            <p class="skill-desc">Electrode Processes , Potentials and Thermodynamics of Cells , Kinetics of Electrode Reactions , Electrodeposition of Metals , Electrodes and Cell Design for Industrial Processes , Electroplating .</p>
-          </div>
+            </div>
+          </details>
 
-          <div class="skill-card sr sr-scale">
-            <div class="skill-icon">♻️</div>
-            <p class="skill-name">Composite Materials</p>
-            <p class="skill-desc">General Concepts , Design of Composite Materials , Carbon-Carbon- and Nano-composites , Metal and Ceramic Matrix Composites , Polymer Matrix Composites , Mechanics of Composites .</p>
-          </div>
+          <!-- Polymeric & Composite Materials -->
+          <details class="accordion-item">
+            <summary class="accordion-header">
+              <span class="accordion-title-group">🧵 Polymer &amp; Composite Engineering</span>
+              <svg class="accordion-icon-chevron" viewBox="0 0 24 24">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="accordion-content">
 
-          <div class="skill-card sr sr-scale d1">
-            <div class="skill-icon">🏗️</div>
-            <p class="skill-name">Construction Materials</p>
-            <p class="skill-desc">Building Stones , Bricks, Tiles and Terra Cotta , Asphalt, Bitumen and Tar , Wood Seasoning and Preservation , Timber and Wood-based Products , Cement and Concrete .</p>
-          </div>
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">🧵</span>
+                  <span class="course-title">Polymeric Materials</span>
+                </div>
+                <button class="btn-details" data-name="Polymeric Materials" data-topics="Concept of Polymer, Polymer Formation Reactions, Specialty Polymers, Characterization of Polymers, Structure and Rheology of Polymers, Analysis and Testing of Polymers">Details</button>
+              </div>
 
-          <div class="skill-card sr sr-scale d2">
-            <div class="skill-icon">⚙️</div>
-            <p class="skill-name">Production Metallurgy</p>
-            <p class="skill-desc">Processes of ore Preparation , General Methods of Metal Production , Production of Pig Iron , Steel Making and Alloys of Steels , Modern Furnaces of Steel Making , Metal-Casting Processes , Continuous Casting Machine (CCM) .</p>
-          </div>
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">♻️</span>
+                  <span class="course-title">Composite Materials</span>
+                </div>
+                <button class="btn-details" data-name="Composite Materials" data-topics="General Concepts, Design of Composite Materials, Carbon-Carbon- and Nano-composites, Metal and Ceramic Matrix Composites, Polymer Matrix Composites, Mechanics of Composites">Details</button>
+              </div>
 
-          <div class="skill-card sr sr-scale d3">
-            <div class="skill-icon">🔧</div>
-            <p class="skill-name">Physical Metallurgy of Iron and Steels</p>
-            <p class="skill-desc">Steels and Tool Steels , Stainless Steel , Testing of Steels , Heat Treatment of Steel , Hardening and Surface Treatment , Metallurgy of Mechanical Working .</p>
-          </div>
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">🧪</span>
+                  <span class="course-title">Plastic and Rubber Technology</span>
+                </div>
+                <button class="btn-details" data-name="Plastic and Rubber Technology" data-topics="Fundamental of Plastic Materials, Processing of Plastics, Finishing and Machining of Plastics, Manufacturing of Plastic Products, Basic Concept of Rubbers, Rubber Manufacturing, Testing of Plastics and Rubbers">Details</button>
+              </div>
 
-          <div class="skill-card sr sr-scale d4">
-            <div class="skill-icon">🔗</div>
-            <p class="skill-name">Welding and Joining Engineering</p>
-            <p class="skill-desc">Fundamental Concepts , Gas Flame Processes for Welding and Cutting , Arc Processes for Welding and Cutting , Resistance and other welding , Brazing and Soldering , Adhesive Bonding and Mechanical Fasteners .</p>
-          </div>
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">🧶</span>
+                  <span class="course-title">Fibre and Textile Engineering</span>
+                </div>
+                <button class="btn-details" data-name="Fibre and Textile Engineering" data-topics="Structure and Properties of Fibres, Natural Fibres, Regenerated Fibres, Synthetic Fibres, High-Performance Fibres, Textile Processing, Characterization of Fibres and Textiles, Advanced Applications of Textile">Details</button>
+              </div>
 
-          <div class="skill-card sr sr-scale d5">
-            <div class="skill-icon">🛡️</div>
-            <p class="skill-name">Corrosion Engineering</p>
-            <p class="skill-desc">General Concepts , Theory of Corrosion , Forms of Corrosion , Corrosion Testing , Corrosion Prevention , Corrosion in Industries .</p>
-          </div>
+            </div>
+          </details>
 
-          <div class="skill-card sr sr-scale d6">
-            <div class="skill-icon">🪟</div>
-            <p class="skill-name">Glass and Ceramics</p>
-            <p class="skill-desc">Glass Science , Properties of Glass , Glass Technology , Fibrous Glass , General Concept and Structure of Ceramics , Raw materials of Ceramics and Clays , Processing and Characterization of Ceramics , Refractory Materials .</p>
-          </div>
+          <!-- Metallurgy & Joining Technologies -->
+          <details class="accordion-item">
+            <summary class="accordion-header">
+              <span class="accordion-title-group">⚙️ Metallurgy &amp; Construction</span>
+              <svg class="accordion-icon-chevron" viewBox="0 0 24 24">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="accordion-content">
 
-          <div class="skill-card sr sr-scale">
-            <div class="skill-icon">🔋</div>
-            <p class="skill-name">Materials for Energy Conversion and Storage</p>
-            <p class="skill-desc">Source of Energies and Fundamentals of Fuel Cells , Storage Cells , Photocatalytic and Hydrogen storage , Materials for Solar and heat Energy Conversion , Biomass and Biogas Conversion , Materials for Nuclear Energy Conversion .</p>
-          </div>
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">🏗️</span>
+                  <span class="course-title">Construction Materials</span>
+                </div>
+                <button class="btn-details" data-name="Construction Materials" data-topics="Building Stones, Bricks Tiles and Terra Cotta, Asphalt Bitumen and Tar, Wood Seasoning and Preservation, Timber and Wood-based Products, Cement and Concrete">Details</button>
+              </div>
 
-          <div class="skill-card sr sr-scale d1">
-            <div class="skill-icon">🔬</div>
-            <p class="skill-name">Materials Characterization-I</p>
-            <p class="skill-desc">Metallurgical Microscopy , Scanning Electron Microscopy (SEM) , Transmission Electron Microscopy (TEM) , Atomic Force Microscopy (AFM) , Scanning Tunneling Microscopy (STM) , DTA and TGA , Characterizations of Magnetic Materials .</p>
-          </div>
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">⚙️</span>
+                  <span class="course-title">Production Metallurgy</span>
+                </div>
+                <button class="btn-details" data-name="Production Metallurgy" data-topics="Processes of ore Preparation, General Methods of Metal Production, Production of Pig Iron, Steel Making and Alloys of Steels, Modern Furnaces of Steel Making, Metal-Casting Processes, Continuous Casting Machine (CCM)">Details</button>
+              </div>
 
-          <div class="skill-card sr sr-scale d2">
-            <div class="skill-icon">🧪</div>
-            <p class="skill-name">Plastic and Rubber Technology</p>
-            <p class="skill-desc">Fundamental of Plastic Materials , Processing of Plastics , Finishing and Machining of Plastics , Manufacturing of Plastic Products , Basic Concept of Rubbers , Rubber Manufacturing , Testing of Plastics and Rubbers .</p>
-          </div>
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">🔧</span>
+                  <span class="course-title">Physical Metallurgy of Iron and Steels</span>
+                </div>
+                <button class="btn-details" data-name="Physical Metallurgy of Iron and Steels" data-topics="Steels and Tool Steels, Stainless Steel, Testing of Steels, Heat Treatment of Steel, Hardening and Surface Treatment, Metallurgy of Mechanical Working">Details</button>
+              </div>
 
-          <div class="skill-card sr sr-scale d3">
-            <div class="skill-icon">🧲</div>
-            <p class="skill-name">Magnetic and Dielectric Materials</p>
-            <p class="skill-desc">Diamagnetic and Paramagnetic Materials , Ferromagnetic Materials , Antiferromagnetic and Ferrimagnetic Materials , Matter Polarization , Dielectric Constant and Loss , Piezoelectricity, Ferroelectricity and Pyroelectricity .</p>
-          </div>
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">🔗</span>
+                  <span class="course-title">Welding and Joining Engineering</span>
+                </div>
+                <button class="btn-details" data-name="Welding and Joining Engineering" data-topics="Fundamental Concepts, Gas Flame Processes for Welding and Cutting, Arc Processes for Welding and Cutting, Resistance and other welding, Brazing and Soldering, Adhesive Bonding and Mechanical Fasteners">Details</button>
+              </div>
 
-          <div class="skill-card sr sr-scale d4">
-            <div class="skill-icon">🌱</div>
-            <p class="skill-name">Waste Management, Industrial Safety and Environmental Issues</p>
-            <p class="skill-desc">Industrial Wastes and Treatment , Hazardous Waste Management , Recycling and Resource Recovery , Pollution and Environmental Effects , Industrial Hazards and Safety , Environmental Management and Sustainability .</p>
-          </div>
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">🛡️</span>
+                  <span class="course-title">Corrosion Engineering</span>
+                </div>
+                <button class="btn-details" data-name="Corrosion Engineering" data-topics="General Concepts, Theory of Corrosion, Forms of Corrosion, Corrosion Testing, Corrosion Prevention, Corrosion in Industries">Details</button>
+              </div>
 
-          <div class="skill-card sr sr-scale d5">
-            <div class="skill-icon">🧽</div>
-            <p class="skill-name">Surface Science and Engineering</p>
-            <p class="skill-desc">Surface and Interface Phenomena , Surface Texture and Surface-Active Agents , Tribology , Metallic Coatings , Inorganic Coatings , Organic Coatings .</p>
-          </div>
+            </div>
+          </details>
 
-          <div class="skill-card sr sr-scale d6">
-            <div class="skill-icon">🧬</div>
-            <p class="skill-name">Nano- and Biomaterials</p>
-            <p class="skill-desc">Nanomaterials , Fabrication and Characterization of Nanomaterials , Applications of Nanomaterials , Concepts of Biomaterials , Metallic, Polymeric and Ceramic Biomaterials , Protein Adsorption and Cellular/Tissue Interactions with Implants .</p>
-          </div>
+          <!-- Characterization & Functional Materials -->
+          <details class="accordion-item">
+            <summary class="accordion-header">
+              <span class="accordion-title-group">🔬 Characterization, Energy &amp; Functional Materials</span>
+              <svg class="accordion-icon-chevron" viewBox="0 0 24 24">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="accordion-content">
 
-          <div class="skill-card sr sr-scale">
-            <div class="skill-icon">🔬</div>
-            <p class="skill-name">Materials Characterization-II</p>
-            <p class="skill-desc">X-ray Diffraction-I , X-ray Diffraction-II , Spectroscopic Analysis , Electron Spectroscopy for Chemical Analysis (ESCA) , Auger Electron Spectroscopy , Atomic Absorption Spectrophotometry .</p>
-          </div>
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">🪟</span>
+                  <span class="course-title">Glass and Ceramics</span>
+                </div>
+                <button class="btn-details" data-name="Glass and Ceramics" data-topics="Glass Science, Properties of Glass, Glass Technology, Fibrous Glass, General Concept and Structure of Ceramics, Raw materials of Ceramics and Clays, Processing and Characterization of Ceramics, Refractory Materials">Details</button>
+              </div>
 
-          <div class="skill-card sr sr-scale d1">
-            <div class="skill-icon">💻</div>
-            <p class="skill-name">Computational Materials Science</p>
-            <p class="skill-desc">Materials Modelling and Simulation , Molecular Dynamics , First-principles Methods , Density Functional Theory , Computer-Integrated Manufacturing .</p>
-          </div>
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">🔋</span>
+                  <span class="course-title">Materials for Energy Conversion and Storage</span>
+                </div>
+                <button class="btn-details" data-name="Materials for Energy Conversion and Storage" data-topics="Source of Energies and Fundamentals of Fuel Cells, Storage Cells, Photocatalytic and Hydrogen storage, Materials for Solar and heat Energy Conversion, Biomass and Biogas Conversion, Materials for Nuclear Energy Conversion">Details</button>
+              </div>
 
-          <div class="skill-card sr sr-scale d2">
-            <div class="skill-icon">⚙️</div>
-            <p class="skill-name">Engineering Materials</p>
-            <p class="skill-desc">Selection of Engineering Materials , Materials for Sports , Materials for Ship Structures , Materials for Air Frame , Materials for Engine and Power Generation , Materials for Automobile Structures .</p>
-          </div>
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">🔬</span>
+                  <span class="course-title">Materials Characterization-I</span>
+                </div>
+                <button class="btn-details" data-name="Materials Characterization-I" data-topics="Metallurgical Microscopy, Scanning Electron Microscopy (SEM), Transmission Electron Microscopy (TEM), Atomic Force Microscopy (AFM), Scanning Tunneling Microscopy (STM), DTA and TGA, Characterizations of Magnetic Materials">Details</button>
+              </div>
 
-          <div class="skill-card sr sr-scale d3">
-            <div class="skill-icon">🧶</div>
-            <p class="skill-name">Fibre and Textile Engineering</p>
-            <p class="skill-desc">Structure and Properties of Fibres , Natural Fibres , Regenerated Fibres , Synthetic Fibres , High-Performance Fibres , Textile Processing , Characterization of Fibres and Textiles , Advanced Applications of Textile .</p>
-          </div>
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">🔬</span>
+                  <span class="course-title">Materials Characterization-II</span>
+                </div>
+                <button class="btn-details" data-name="Materials Characterization-II" data-topics="X-ray Diffraction-I, X-ray Diffraction-II, Spectroscopic Analysis, Electron Spectroscopy for Chemical Analysis (ESCA), Auger Electron Spectroscopy, Atomic Absorption Spectrophotometry">Details</button>
+              </div>
+
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">🧲</span>
+                  <span class="course-title">Magnetic and Dielectric Materials</span>
+                </div>
+                <button class="btn-details" data-name="Magnetic and Dielectric Materials" data-topics="Diamagnetic and Paramagnetic Materials, Ferromagnetic Materials, Antiferromagnetic and Ferrimagnetic Materials, Matter Polarization, Dielectric Constant and Loss, Piezoelectricity Ferroelectricity and Pyroelectricity">Details</button>
+              </div>
+
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">🧬</span>
+                  <span class="course-title">Nano- and Biomaterials</span>
+                </div>
+                <button class="btn-details" data-name="Nano- and Biomaterials" data-topics="Nanomaterials, Fabrication and Characterization of Nanomaterials, Applications of Nanomaterials, Concepts of Biomaterials, Metallic Polymeric and Ceramic Biomaterials, Protein Adsorption and Cellular/Tissue Interactions with Implants">Details</button>
+              </div>
+
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">🧽</span>
+                  <span class="course-title">Surface Science and Engineering</span>
+                </div>
+                <button class="btn-details" data-name="Surface Science and Engineering" data-topics="Surface and Interface Phenomena, Surface Texture and Surface-Active Agents, Tribology, Metallic Coatings, Inorganic Coatings, Organic Coatings">Details</button>
+              </div>
+
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">💻</span>
+                  <span class="course-title">Computational Materials Science</span>
+                </div>
+                <button class="btn-details" data-name="Computational Materials Science" data-topics="Materials Modelling and Simulation, Molecular Dynamics, First-principles Methods, Density Functional Theory, Computer-Integrated Manufacturing">Details</button>
+              </div>
+
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">⚙️</span>
+                  <span class="course-title">Engineering Materials</span>
+                </div>
+                <button class="btn-details" data-name="Engineering Materials" data-topics="Selection of Engineering Materials, Materials for Sports, Materials for Ship Structures, Materials for Air Frame, Materials for Engine and Power Generation, Materials for Automobile Structures">Details</button>
+              </div>
+
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">⚖️</span>
+                  <span class="course-title">Law and Professional Ethics</span>
+                </div>
+                <button class="btn-details" data-name="Law and Professional Ethics" data-topics="Law, Company law, Labor Law, History and Development of Engineering Ethics, Ethical Expectations">Details</button>
+              </div>
+
+              <div class="course-row">
+                <div class="course-info">
+                  <span class="course-icon">🌱</span>
+                  <span class="course-title">Waste Management, Industrial Safety and Environmental Issues</span>
+                </div>
+                <button class="btn-details" data-name="Waste Management, Industrial Safety and Environmental Issues" data-topics="Industrial Wastes and Treatment, Hazardous Waste Management, Recycling and Resource Recovery, Pollution and Environmental Effects, Industrial Hazards and Safety, Environmental Management and Sustainability">Details</button>
+              </div>
+
+            </div>
+          </details>
 
         </div>
       </div>
@@ -1597,115 +2148,31 @@
     </div>
   </section>
 
+  <!-- Course Details Modal Dialog -->
+  <div class="modal-backdrop" id="courseModal">
+    <div class="modal-card">
+      <button class="modal-close" id="modalCloseBtn" aria-label="Close dialog">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+      <div class="modal-header">
+        <span class="modal-icon" id="modalIcon">📚</span>
+        <h3 class="modal-title" id="modalTitle">Course Syllabus</h3>
+      </div>
+      <div class="modal-body">
+        <h4>Key Curriculum Topics:</h4>
+        <div class="modal-topics" id="modalTopics"></div>
+      </div>
+    </div>
+  </div>
+
   <section id="notes">
     <div class="container">
       <div class="section-label">Study Notes</div>
       <h2 class="section-heading">Course Notes</h2>
 
-      <div class="edu-list">
-
-        <!-- To add another note: copy this whole edu-item block, change the code, title, course name and the two file paths. -->
-        <div class="edu-item sr sr-left">
-          <span class="edu-year">MSE1211</span>
-          <div>
-            <p class="edu-name">Crystal Growth</p>
-            <p class="edu-detail">Crystallography-II</p>
-            <div class="note-actions">
-              <a class="btn-note" href="notes/MSE1211%20Chapter%203%20Crystal%20growth%20by%20Ubaeda.pdf" target="_blank" rel="noopener">
-                <svg viewBox="0 0 24 24">
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                  <circle cx="12" cy="12" r="3" />
-                </svg>
-                View
-              </a>
-              <a class="btn-note" href="notes/MSE1211%20Chapter%203%20Crystal%20growth%20by%20Ubaeda.pdf" download="MSE1211_Crystal_Growth_Abu_Ubaeda.pdf">
-                <svg viewBox="0 0 24 24">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                  <polyline points="7 10 12 15 17 10" />
-                  <line x1="12" y1="15" x2="12" y2="3" />
-                </svg>
-                Download
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="edu-item sr sr-left d1">
-          <span class="edu-year">CHEM1211</span>
-          <div>
-            <p class="edu-name">Atomic Structure</p>
-            <p class="edu-detail">Physical &amp; Inorganic Chemistry</p>
-            <div class="note-actions">
-              <a class="btn-note" href="notes/CHEM1211%20C4%20Atomic%20Structure%20by%20Ubaeda%20.pdf" target="_blank" rel="noopener">
-                <svg viewBox="0 0 24 24">
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                  <circle cx="12" cy="12" r="3" />
-                </svg>
-                View
-              </a>
-              <a class="btn-note" href="notes/CHEM1211%20C4%20Atomic%20Structure%20by%20Ubaeda%20.pdf" download="CHEM1211_Atomic_Structure_Abu_Ubaeda.pdf">
-                <svg viewBox="0 0 24 24">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                  <polyline points="7 10 12 15 17 10" />
-                  <line x1="12" y1="15" x2="12" y2="3" />
-                </svg>
-                Download
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="edu-item sr sr-left d2">
-          <span class="edu-year">MATH1211</span>
-          <div>
-            <p class="edu-name">Integration</p>
-            <p class="edu-detail">Calculus and Differential Equations</p>
-            <div class="note-actions">
-              <a class="btn-note" href="notes/MATH1211%20Integration.pdf" target="_blank" rel="noopener">
-                <svg viewBox="0 0 24 24">
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                  <circle cx="12" cy="12" r="3" />
-                </svg>
-                View
-              </a>
-              <a class="btn-note" href="notes/MATH1211%20Integration.pdf" download="MATH1211_Integration_Abu_Ubaeda.pdf">
-                <svg viewBox="0 0 24 24">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                  <polyline points="7 10 12 15 17 10" />
-                  <line x1="12" y1="15" x2="12" y2="3" />
-                </svg>
-                Download
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="edu-item sr sr-left d3">
-          <span class="edu-year">MATH1211</span>
-          <div>
-            <p class="edu-name">Ordinary Differential Equations (ODE)</p>
-            <p class="edu-detail">Calculus and Differential Equations</p>
-            <div class="note-actions">
-              <a class="btn-note" href="notes/MATH1211%20ODE.pdf" target="_blank" rel="noopener">
-                <svg viewBox="0 0 24 24">
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                  <circle cx="12" cy="12" r="3" />
-                </svg>
-                View
-              </a>
-              <a class="btn-note" href="notes/MATH1211%20ODE.pdf" download="MATH1211_ODE_Abu_Ubaeda.pdf">
-                <svg viewBox="0 0 24 24">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                  <polyline points="7 10 12 15 17 10" />
-                  <line x1="12" y1="15" x2="12" y2="3" />
-                </svg>
-                Download
-              </a>
-            </div>
-          </div>
-        </div>
-
-      </div>
+      <a class="btn-note sr sr-up" href="note.html">
+        Open all course notes &rarr;
+      </a>
     </div>
   </section>
 
@@ -1864,32 +2331,6 @@
           </div>
         </div>
 
-        <!-- <div class="contact-item sr sr-up d5">
-          <div class="contact-icon">💬</div>
-          <div>
-            <p class="contact-label">WhatsApp</p>
-            <p class="contact-value"><a href="https://wa.me/8801571505487" target="_blank"
-                rel="noopener">@mdabuubaeda</a></p>
-          </div>
-        </div> -->
-
-        <!-- <div class="contact-item sr sr-up d6">
-          <div class="contact-icon">✈️</div>
-          <div>
-            <p class="contact-label">Telegram</p>
-            <p class="contact-value"><a href="https://t.me/Ubaedaru" target="_blank" rel="noopener">@Ubaedaru</a></p>
-          </div>
-        </div> -->
-
-        <!-- <div class="contact-item sr sr-up d6">
-          <div class="contact-icon">📘</div>
-          <div>
-            <p class="contact-label">Facebook</p>
-            <p class="contact-value"><a href="https://www.facebook.com/mdabu.ubaeda/" target="_blank"
-                rel="noopener">mdabu.ubaeda</a></p>
-          </div>
-        </div> -->
-
       </div>
     </div>
   </section>
@@ -1964,6 +2405,40 @@
       });
     });
 
+    /* Course Syllabus Modal Functionality */
+    const courseModal = document.getElementById('courseModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalTopics = document.getElementById('modalTopics');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+
+    document.querySelectorAll('.btn-details').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const name = btn.getAttribute('data-name');
+        const topicsStr = btn.getAttribute('data-topics') || '';
+        const topicsArr = topicsStr.split(',').map(t => t.trim()).filter(Boolean);
+
+        modalTitle.textContent = name;
+        modalTopics.innerHTML = '';
+        topicsArr.forEach(topic => {
+          const span = document.createElement('span');
+          span.className = 'topic-tag';
+          span.textContent = topic;
+          modalTopics.appendChild(span);
+        });
+
+        courseModal.classList.add('open');
+      });
+    });
+
+    function closeModal() {
+      courseModal.classList.remove('open');
+    }
+
+    modalCloseBtn.addEventListener('click', closeModal);
+    courseModal.addEventListener('click', (e) => {
+      if (e.target === courseModal) closeModal();
+    });
+
     const revealObserver = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
@@ -1984,6 +2459,19 @@
     );
 
     document.querySelectorAll('.sr').forEach(el => revealObserver.observe(el));
+
+    /* Course accordion: only one card can be expanded at a time */
+    document.querySelectorAll('.course-accordion').forEach(group => {
+      const items = group.querySelectorAll(':scope > .accordion-item');
+      items.forEach(item => {
+        item.addEventListener('toggle', () => {
+          if (!item.open) return;
+          items.forEach(other => {
+            if (other !== item && other.open) other.open = false;
+          });
+        });
+      });
+    });
   </script>
 
 </body>
