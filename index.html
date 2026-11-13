@@ -9,7 +9,9 @@
   <meta property="og:title" content="Abu Ubaeda | Materials Science &amp; Engineering Student">
   <meta property="og:description" content="B.Sc. Engineering student at the University of Rajshahi. Coursework, skills and certifications.">
   <meta property="og:type" content="website">
-  <link rel="icon" href="profile.jpg" type="image/jpeg">
+  <!-- Atomic Model Favicon (Adaptive Light/Dark SVG) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cstyle%3E.orbit%7Bstroke:%230ea5a0;stroke-width:1.8;fill:none%7D.core%7Bfill:%230ea5a0%7D.dot%7Bfill:%232be4dd%7D@media(prefers-color-scheme:dark)%7B.orbit%7Bstroke:%2318d8d1%7D.core%7Bfill:%2318d8d1%7D.dot%7Bfill:%23ffffff%7D%7D%3C/style%3E%3Cellipse class='orbit' cx='16' cy='16' rx='14' ry='5.5' transform='rotate(30 16 16)'/%3E%3Cellipse class='orbit' cx='16' cy='16' rx='14' ry='5.5' transform='rotate(90 16 16)'/%3E%3Cellipse class='orbit' cx='16' cy='16' rx='14' ry='5.5' transform='rotate(150 16 16)'/%3E%3Ccircle class='core' cx='16' cy='16' r='3.2'/%3E%3Ccircle class='dot' cx='29' cy='16' r='1.5' transform='rotate(30 16 16)'/%3E%3Ccircle class='dot' cx='29' cy='16' r='1.5' transform='rotate(90 16 16)'/%3E%3Ccircle class='dot' cx='29' cy='16' r='1.5' transform='rotate(150 16 16)'/%3E%3C/svg%3E">
+  <link rel="alternate icon" href="favicon.svg" type="image/svg+xml">
 
   <!-- Google Fonts: Cinzel Decorative (hero name) + Syne (headings) + Outfit (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -128,10 +130,11 @@
     .liquid-orb {
       position: absolute;
       border-radius: 50%;
-      filter: blur(85px);
+      filter: blur(40px);
       opacity: 0.95;
       will-change: transform;
       animation: floatLiquid 22s ease-in-out infinite alternate;
+      transform: translate3d(0, 0, 0);
     }
 
     .orb-1 {
@@ -1484,8 +1487,91 @@
     .d8 { transition-delay: 0.56s; }
 
     /* ==========================================================================
-       RESPONSIVE ADJUSTMENTS
+       MOBILE PERFORMANCE & RESPONSIVE ADJUSTMENTS
        ========================================================================== */
+    @media (max-width: 768px) {
+      /* 1. Eliminate heavy real-time GPU backdrop blurs across repeating cards */
+      :root {
+        --glass-bg: rgba(255, 255, 255, 0.88);
+        --glass-bg-hover: rgba(255, 255, 255, 0.96);
+        --glass-shadow: 0 4px 14px rgba(15, 35, 52, 0.06);
+        --glass-shadow-hover: 0 6px 20px rgba(14, 165, 160, 0.14);
+      }
+
+      [data-theme="dark"] {
+        --glass-bg: rgba(18, 29, 41, 0.88);
+        --glass-bg-hover: rgba(24, 38, 54, 0.96);
+        --glass-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+        --glass-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.7);
+      }
+
+      .project-card,
+      .skill-card,
+      .lang-card,
+      .contact-item,
+      .accordion-item,
+      .edu-item,
+      .course-row,
+      .skills-tabs,
+      .section-label,
+      .btn-download-cv,
+      .btn-note,
+      .hero-avatar,
+      footer {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+      }
+
+      /* Keep lightweight glass blur ONLY on fixed chrome (single layer) */
+      .sidebar,
+      .sidebar-toggle,
+      .toggle-track,
+      .modal-card {
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
+      }
+
+      /* 2. Stop heavy continuous background blur and infinite animation on mobile */
+      .liquid-orb {
+        animation: none !important;
+        filter: none !important;
+        opacity: 0.65;
+        will-change: auto !important;
+      }
+
+      .orb-1 {
+        width: 300px;
+        height: 300px;
+        top: -60px;
+        left: -60px;
+      }
+
+      .orb-2 {
+        width: 320px;
+        height: 320px;
+        top: 35%;
+        right: -80px;
+      }
+
+      .orb-3 {
+        width: 280px;
+        height: 280px;
+        bottom: -60px;
+        left: 10%;
+      }
+    }
+
+    /* 3. Disable mouse-tracking specular sheen on touch devices */
+    @media (hover: none) {
+      .project-card::before,
+      .skill-card::before,
+      .lang-card::before,
+      .contact-item::before,
+      .edu-item::before {
+        display: none !important;
+      }
+    }
+
     @media (max-width: 640px) {
       .hero-grid {
         grid-template-columns: 1fr;
@@ -1824,12 +1910,12 @@
       <div class="skills-categories">
 
         <div class="sr sr-up">
-          <div class="skill-category-title">💻 Programming</div>
+          <div class="skill-category-title">💻 Programming &amp; Tools</div>
           <div class="skills-grid">
 
             <div class="skill-card sr sr-scale">
               <div class="skill-icon">🐍</div>
-              <p class="skill-name">Python (Intermediate)</p>
+              <p class="skill-name">Python</p>
               <p class="skill-desc">Scripting, automation, data handling and basic scientific computing with NumPy.</p>
             </div>
 
@@ -1837,6 +1923,12 @@
               <div class="skill-icon">🖥️</div>
               <p class="skill-name">C Programming</p>
               <p class="skill-desc">Structured programming, algorithms, file handling and data types.</p>
+            </div>
+
+            <div class="skill-card sr sr-scale d2">
+              <div class="skill-icon">📄</div>
+              <p class="skill-name">LaTeX</p>
+              <p class="skill-desc">Technical document preparation, academic report formatting, and mathematical typesetting.</p>
             </div>
 
           </div>
@@ -2597,20 +2689,22 @@
       localStorage.setItem('site-theme', theme);
     });
 
-    /* Liquid Glass Specular Light Reflection Tracker */
-    const glassSurfaces = document.querySelectorAll(
-      '.project-card, .skill-card, .lang-card, .contact-item, .edu-item'
-    );
+    /* Liquid Glass Specular Light Reflection Tracker (Desktop only) */
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      const glassSurfaces = document.querySelectorAll(
+        '.project-card, .skill-card, .lang-card, .contact-item, .edu-item'
+      );
 
-    glassSurfaces.forEach(surface => {
-      surface.addEventListener('mousemove', (e) => {
-        const rect = surface.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        surface.style.setProperty('--mouse-x', `${x}px`);
-        surface.style.setProperty('--mouse-y', `${y}px`);
+      glassSurfaces.forEach(surface => {
+        surface.addEventListener('mousemove', (e) => {
+          const rect = surface.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          surface.style.setProperty('--mouse-x', `${x}px`);
+          surface.style.setProperty('--mouse-y', `${y}px`);
+        }, { passive: true });
       });
-    });
+    }
 
     /* Skills Tab Switcher */
     const skillsTabs = document.querySelectorAll('.skills-tab');

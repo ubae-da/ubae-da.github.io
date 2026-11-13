@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    .orbit { stroke: #0ea5a0; stroke-width: 1.8; fill: none; }
+    .core { fill: #0ea5a0; }
+    .dot { fill: #2be4dd; }
+    @media (prefers-color-scheme: dark) {
+      .orbit { stroke: #18d8d1; }
+      .core { fill: #18d8d1; }
+      .dot { fill: #ffffff; }
+    }
+  </style>
+  <ellipse class="orbit" cx="16" cy="16" rx="14" ry="5.5" transform="rotate(30 16 16)" />
+  <ellipse class="orbit" cx="16" cy="16" rx="14" ry="5.5" transform="rotate(90 16 16)" />
+  <ellipse class="orbit" cx="16" cy="16" rx="14" ry="5.5" transform="rotate(150 16 16)" />
+  <circle class="core" cx="16" cy="16" r="3.2" />
+  <circle class="dot" cx="29" cy="16" r="1.5" transform="rotate(30 16 16)" />
+  <circle class="dot" cx="29" cy="16" r="1.5" transform="rotate(90 16 16)" />
+  <circle class="dot" cx="29" cy="16" r="1.5" transform="rotate(150 16 16)" />
+</svg>
