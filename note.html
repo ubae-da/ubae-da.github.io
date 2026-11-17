@@ -9,7 +9,9 @@
   <meta property="og:title" content="Study Notes | Abu Ubaeda">
   <meta property="og:description" content="Course notes in Materials Science and Engineering.">
   <meta property="og:type" content="website">
-  <link rel="icon" href="profile.jpg" type="image/jpeg">
+  <!-- Atomic Model Favicon (Adaptive Light/Dark SVG) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cstyle%3E.orbit%7Bstroke:%230ea5a0;stroke-width:1.8;fill:none%7D.core%7Bfill:%230ea5a0%7D.dot%7Bfill:%232be4dd%7D@media(prefers-color-scheme:dark)%7B.orbit%7Bstroke:%2318d8d1%7D.core%7Bfill:%2318d8d1%7D.dot%7Bfill:%23ffffff%7D%7D%3C/style%3E%3Cellipse class='orbit' cx='16' cy='16' rx='14' ry='5.5' transform='rotate(30 16 16)'/%3E%3Cellipse class='orbit' cx='16' cy='16' rx='14' ry='5.5' transform='rotate(90 16 16)'/%3E%3Cellipse class='orbit' cx='16' cy='16' rx='14' ry='5.5' transform='rotate(150 16 16)'/%3E%3Ccircle class='core' cx='16' cy='16' r='3.2'/%3E%3Ccircle class='dot' cx='29' cy='16' r='1.5' transform='rotate(30 16 16)'/%3E%3Ccircle class='dot' cx='29' cy='16' r='1.5' transform='rotate(90 16 16)'/%3E%3Ccircle class='dot' cx='29' cy='16' r='1.5' transform='rotate(150 16 16)'/%3E%3C/svg%3E">
+  <link rel="alternate icon" href="favicon.svg" type="image/svg+xml">
 
   <!-- Google Fonts: Cinzel Decorative (hero name) + Syne (headings) + Outfit (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,7 +37,7 @@
       --accent-lt: #d0f0ee;
       /* light teal tint             */
       --rule: #d4dde6;
-      --nav-bg: rgba(240, 244, 248, 0.93);
+      --nav-bg: rgba(242, 249, 250, 0.88);
       --shadow: 0 6px 24px rgba(14, 165, 160, 0.12);
       --shadow2: 0 2px 8px rgba(15, 25, 35, 0.08);
       --card-tint: #e6f1f5;
@@ -45,7 +47,8 @@
       --font-name: 'Cinzel Decorative', serif;
       /* hero name only */
       --font-body: 'Outfit', sans-serif;
-      --max-w: 900px;
+      --max-w: 960px;
+      --nav-h: 54px;
       --t: 0.3s ease;
     }
 
@@ -59,7 +62,7 @@
       --accent2: #0ea5a0;
       --accent-lt: #0a2a2a;
       --rule: #1e2e3e;
-      --nav-bg: rgba(11, 17, 23, 0.93);
+      --nav-bg: rgba(11, 17, 23, 0.90);
       --shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
       --shadow2: 0 2px 8px rgba(0, 0, 0, 0.4);
       --card-tint: #1b2b38;
@@ -75,6 +78,7 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: var(--nav-h);
     }
 
     body {
@@ -85,11 +89,7 @@
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
       transition: background var(--t), color var(--t);
-      padding-left: 0;
-    }
-
-    body.sidebar-open {
-      padding-left: 76px;
+      padding-top: var(--nav-h);
     }
 
     p {
@@ -102,198 +102,246 @@
       text-decoration: none;
     }
 
-    .sidebar {
+    /* ── Top Horizontal Navigation Bar ── */
+    .navbar {
       position: fixed;
-      left: 0;
       top: 0;
-      bottom: 0;
-      z-index: 200;
-      width: 76px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2.2rem;
-      padding: 1.3rem 0 1.6rem;
+      left: 0;
+      right: 0;
+      z-index: 300;
+      height: var(--nav-h);
       background: var(--nav-bg);
-      backdrop-filter: blur(12px);
-      border-right: 1px solid var(--rule);
-      transform: translateX(-100%);
-      transition: background var(--t), border-color var(--t), transform var(--t);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--rule);
+      box-shadow: 0 2px 16px rgba(15, 25, 35, 0.04);
+      transition: background var(--t), border-color var(--t), box-shadow var(--t);
     }
 
-    .sidebar.open {
-      transform: translateX(0);
+    .nav-container {
+      max-width: 1140px;
+      margin: 0 auto;
+      height: 100%;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
     }
 
-    .sidebar-toggle {
-      position: fixed;
-      top: 1.1rem;
-      left: 1.4rem;
-      z-index: 260;
-      width: 42px;
-      height: 42px;
-      border-radius: 10px;
+    /* Brand Wordmark ("Abu Ubaeda.") */
+    .nav-brand {
+      font-family: var(--font-head);
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      display: inline-flex;
+      align-items: baseline;
+      flex-shrink: 0;
+      transition: color var(--t), transform var(--t);
+    }
+
+    .nav-brand span {
+      color: var(--accent);
+    }
+
+    .nav-brand:hover {
+      transform: translateY(-1px);
+    }
+
+    /* Right-side Navigation & Controls */
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--ink);
+      position: relative;
+      padding: 0.25rem 0;
+      white-space: nowrap;
+      transition: color var(--t);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      border-radius: 2px;
+      background: var(--accent);
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--accent);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    /* Theme Toggle Button */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .theme-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--ink);
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--surface);
-      border: 1px solid var(--rule);
-      color: var(--ink);
       cursor: pointer;
-      transition: left var(--t), background var(--t), border-color var(--t), color var(--t);
+      transition: color var(--t), background var(--t), border-color var(--t), transform 0.4s ease;
     }
 
-    .sidebar-toggle:hover {
+    .theme-btn:hover {
       color: var(--accent);
-      border-color: var(--accent);
+      background: var(--accent-lt);
+      border-color: var(--rule);
+      transform: rotate(35deg);
     }
 
-    .sidebar-toggle svg {
+    .theme-btn svg {
       width: 20px;
       height: 20px;
       stroke: currentColor;
       fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-    }
-
-    body.sidebar-open .sidebar-toggle {
-      left: 92px;
-    }
-
-    .sidebar-logo {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--accent-lt);
-      color: var(--accent);
-      font-family: var(--font-head);
-      font-weight: 800;
-      font-size: 0.95rem;
-      border: 1.5px solid var(--accent);
-      flex-shrink: 0;
-      transition: background var(--t), color var(--t), border-color var(--t);
-    }
-
-    .sidebar-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      list-style: none;
-      margin-top: 0.4rem;
-    }
-
-    .sidebar-links a {
-      width: 46px;
-      height: 46px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 12px;
-      color: var(--muted);
-      position: relative;
-      transition: color var(--t), background var(--t);
-    }
-
-    .sidebar-links svg {
-      width: 21px;
-      height: 21px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 1.7;
+      stroke-width: 1.9;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
 
-    .sidebar-links a:hover,
-    .sidebar-links a.active {
-      color: var(--accent);
-      background: var(--accent-lt);
+    [data-theme="dark"] .icon-sun {
+      display: block;
     }
 
-    .sidebar-links a::after {
-      content: attr(data-label);
-      position: absolute;
-      left: calc(100% + 10px);
-      top: 50%;
-      transform: translateY(-50%);
+    [data-theme="dark"] .icon-moon {
+      display: none;
+    }
+
+    [data-theme="light"] .icon-sun {
+      display: none;
+    }
+
+    [data-theme="light"] .icon-moon {
+      display: block;
+    }
+
+    /* Mobile Hamburger Button */
+    .mobile-menu-btn {
+      display: none;
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      border: 1px solid var(--rule);
       background: var(--surface);
       color: var(--ink);
-      font-family: var(--font-body);
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-      padding: 0.35rem 0.7rem;
-      border-radius: 6px;
-      border: 1px solid var(--rule);
-      box-shadow: var(--shadow2);
-      white-space: nowrap;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: color var(--t), border-color var(--t), background var(--t);
+    }
+
+    .mobile-menu-btn:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .mobile-menu-btn svg {
+      width: 21px;
+      height: 21px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Mobile Slide-Down Drawer */
+    .mobile-drawer {
+      position: fixed;
+      top: var(--nav-h);
+      left: 0;
+      right: 0;
+      z-index: 290;
+      background: var(--surface);
+      border-bottom: 1px solid var(--rule);
+      box-shadow: 0 16px 36px rgba(15, 25, 35, 0.14);
+      padding: 1rem 1.5rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      transform: translateY(-110%);
       opacity: 0;
       pointer-events: none;
-      transition: opacity var(--t), transform var(--t);
+      transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease, background var(--t);
     }
 
-    .sidebar-links a:hover::after {
+    .mobile-drawer.open {
+      transform: translateY(0);
       opacity: 1;
-      transform: translateY(-50%) translateX(4px);
+      pointer-events: auto;
     }
 
-    .theme-toggle {
-      position: fixed;
-      top: 1.1rem;
-      right: 1.4rem;
-      z-index: 250;
-      width: 46px;
-      height: 24px;
-      cursor: pointer;
-      flex-shrink: 0;
-    }
-
-    .theme-toggle input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .toggle-track {
-      position: absolute;
-      inset: 0;
-      background: var(--rule);
-      border-radius: 999px;
-      transition: background var(--t);
+    .mobile-drawer a {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 5px;
-      font-size: 0.62rem;
-      line-height: 1;
+      padding: 0.72rem 0.9rem;
+      border-radius: 8px;
+      font-family: var(--font-head);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--ink);
+      transition: background var(--t), color var(--t), padding-left var(--t);
     }
 
-    .toggle-track::before {
-      content: '☀️';
+    .mobile-drawer a:hover,
+    .mobile-drawer a.active {
+      background: var(--accent-lt);
+      color: var(--accent);
+      padding-left: 1.2rem;
     }
 
-    .toggle-track::after {
-      content: '🌙';
+    .mobile-backdrop {
+      position: fixed;
+      inset: 0;
+      top: var(--nav-h);
+      z-index: 280;
+      background: rgba(11, 17, 23, 0.45);
+      backdrop-filter: blur(2px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
     }
 
-    .toggle-thumb {
-      position: absolute;
-      top: 3px;
-      left: 3px;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: var(--accent);
-      transition: transform var(--t), background var(--t);
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
-    }
-
-    .theme-toggle input:checked~.toggle-thumb {
-      transform: translateX(22px);
+    .mobile-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
     }
 
     .container {
@@ -478,56 +526,40 @@
       transition-delay: 0.21s;
     }
 
-    @media (max-width: 640px) {
-      .sidebar {
-        width: 58px;
-        gap: 1.6rem;
-        padding: 1.0rem 0 1.2rem;
-      }
-
-      .sidebar-logo {
-        width: 36px;
-        height: 36px;
-        font-size: 0.8rem;
-      }
-
-      .sidebar-links {
-        gap: 0.35rem;
-      }
-
-      .sidebar-links a {
-        width: 40px;
-        height: 40px;
-        border-radius: 10px;
-      }
-
-      .sidebar-links svg {
-        width: 19px;
-        height: 19px;
-      }
-
-      .sidebar-links a::after {
+    /* ── Responsive Breakpoints ── */
+    @media (max-width: 960px) {
+      .nav-links {
         display: none;
       }
 
-      body.sidebar-open {
-        padding-left: 58px;
+      .mobile-menu-btn {
+        display: flex;
       }
 
-      .sidebar-toggle {
-        top: 0.85rem;
-        left: 0.9rem;
-        width: 38px;
-        height: 38px;
+      .nav-container {
+        padding: 0 1.25rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      :root {
+        --nav-h: 50px;
       }
 
-      body.sidebar-open .sidebar-toggle {
-        left: 68px;
+      .nav-brand {
+        font-size: 1.15rem;
       }
 
-      .theme-toggle {
-        top: 0.85rem;
-        right: 0.9rem;
+      .container {
+        padding: 0 1.25rem;
+      }
+
+      section {
+        padding: 3.75rem 0;
+      }
+
+      #materials {
+        padding-top: 2.75rem !important;
       }
     }
   </style>
@@ -535,116 +567,66 @@
 
 <body>
 
-  <button class="sidebar-toggle" id="sidebar-toggle-btn" aria-label="Open navigation" aria-expanded="false">
-    <svg viewBox="0 0 24 24">
-      <path d="M3 6h18" />
-      <path d="M3 12h18" />
-      <path d="M3 18h18" />
-    </svg>
-  </button>
+  <!-- Top Horizontal Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html#about" class="nav-brand" aria-label="Abu Ubaeda Home">
+        Abu&nbsp;<span>Ubaeda.</span>
+      </a>
 
-  <nav class="sidebar" id="sidebar" aria-label="Section navigation">
-    <div class="sidebar-logo" title="Abu Ubaeda">AU</div>
+      <div class="nav-right">
+        <nav aria-label="Primary Navigation">
+          <ul class="nav-links" id="desktop-nav">
+            <li><a href="#materials" class="active">Course Materials</a></li>
+            <li><a href="#notes">Course Notes</a></li>
+          </ul>
+        </nav>
 
-    <ul class="sidebar-links">
-      <li>
-        <a href="index.html#about" data-label="About">
-          <svg viewBox="0 0 24 24">
-            <circle cx="12" cy="8" r="4" />
-            <path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7" />
-          </svg>
-        </a>
-      </li>
-      <li>
-        <a href="index.html#education" data-label="Education">
-          <svg viewBox="0 0 24 24">
-            <path d="M2 9l10-5 10 5-10 5-10-5z" />
-            <path d="M6 11v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5" />
-            <path d="M22 9v7" />
-          </svg>
-        </a>
-      </li>
-      <li>
-        <a href="index.html#projects" data-label="Projects">
-          <svg viewBox="0 0 24 24">
-            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
-          </svg>
-        </a>
-      </li>
-      <li>
-        <a href="index.html#skills" data-label="Skills">
-          <svg viewBox="0 0 24 24">
-            <path d="M12 3l9 5-9 5-9-5 9-5z" />
-            <path d="M3 13l9 5 9-5" />
-            <path d="M3 18l9 5 9-5" />
-          </svg>
-        </a>
-      </li>
-      <li>
-        <a href="index.html#mse" data-label="MSE Courses">
-          <svg viewBox="0 0 24 24">
-            <path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z" />
-            <path d="M4 19V5" />
-            <path d="M9 8h6" />
-            <path d="M9 12h6" />
-          </svg>
-        </a>
-      </li>
-      <li>
-        <a href="#materials" data-label="Study Materials">
-          <svg viewBox="0 0 24 24">
-            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-          </svg>
-        </a>
-      </li>
-      <li>
-        <a href="#notes" data-label="Study Notes" class="active">
-          <svg viewBox="0 0 24 24">
-            <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
-            <path d="M14 3v5h5" />
-            <path d="M9 13h6" />
-            <path d="M9 17h6" />
-          </svg>
-        </a>
-      </li>
-      <li>
-        <a href="index.html#languages" data-label="Languages">
-          <svg viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="9" />
-            <path d="M3 12h18" />
-            <path d="M12 3c2.5 2.5 4 5.7 4 9s-1.5 6.5-4 9c-2.5-2.5-4-5.7-4-9s1.5-6.5 4-9z" />
-          </svg>
-        </a>
-      </li>
-      <li>
-        <a href="index.html#certifications" data-label="Certifications">
-          <svg viewBox="0 0 24 24">
-            <circle cx="12" cy="8" r="5" />
-            <path d="M8.5 12.5L7 21l5-2.5L17 21l-1.5-8.5" />
-          </svg>
-        </a>
-      </li>
-      <li>
-        <a href="index.html#contact" data-label="Contact">
-          <svg viewBox="0 0 24 24">
-            <path d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z" />
-            <path d="M3 6l9 7 9-7" />
-          </svg>
-        </a>
-      </li>
-    </ul>
+        <div class="nav-actions">
+          <button class="theme-btn" id="theme-toggle-btn" title="Toggle Light / Dark Theme" aria-label="Toggle color theme">
+            <!-- Sun Icon (shown in dark mode) -->
+            <svg class="icon-sun" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2"></path>
+              <path d="M12 20v2"></path>
+              <path d="m4.93 4.93 1.41 1.41"></path>
+              <path d="m17.66 17.66 1.41 1.41"></path>
+              <path d="M2 12h2"></path>
+              <path d="M20 12h2"></path>
+              <path d="m6.34 17.66-1.41 1.41"></path>
+              <path d="m19.07 4.93-1.41 1.41"></path>
+            </svg>
+            <!-- Moon Icon (shown in light mode) -->
+            <svg class="icon-moon" viewBox="0 0 24 24">
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+            </svg>
+          </button>
+
+          <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer">
+            <svg id="menu-icon-open" viewBox="0 0 24 24">
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+            <svg id="menu-icon-close" viewBox="0 0 24 24" style="display: none;">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer & Backdrop -->
+  <div class="mobile-backdrop" id="mobile-backdrop"></div>
+  <nav class="mobile-drawer" id="mobile-drawer" aria-label="Mobile Navigation">
+    <a href="#materials" class="active">Course Materials</a>
+    <a href="#notes">Course Notes</a>
   </nav>
 
-  <label class="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">
-    <input type="checkbox" id="theme-checkbox">
-    <span class="toggle-track"></span>
-    <span class="toggle-thumb"></span>
-  </label>
-
-  <section id="materials" style="padding-top:5.5rem">
+  <section id="materials" style="padding-top:4.5rem">
     <div class="container">
-      <p style="margin-bottom:1.4rem"><a class="btn-note" href="index.html">&larr; Back to portfolio</a></p>
       <div class="section-label">Study Materials</div>
       <h2 class="section-heading">Course Materials</h2>
 
@@ -805,45 +787,76 @@
   </footer>
 
   <script>
-    /* Sidebar navigation toggle */
-    const sidebar = document.getElementById('sidebar');
-    const sidebarToggleBtn = document.getElementById('sidebar-toggle-btn');
+    /* Mobile Menu Drawer Toggle */
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileDrawer = document.getElementById('mobile-drawer');
+    const mobileBackdrop = document.getElementById('mobile-backdrop');
+    const menuIconOpen = document.getElementById('menu-icon-open');
+    const menuIconClose = document.getElementById('menu-icon-close');
 
-    function setSidebar(open) {
-      sidebar.classList.toggle('open', open);
-      document.body.classList.toggle('sidebar-open', open);
-      sidebarToggleBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      sidebarToggleBtn.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+    function setMobileMenu(open) {
+      mobileDrawer.classList.toggle('open', open);
+      mobileBackdrop.classList.toggle('open', open);
+      mobileMenuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      mobileMenuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      menuIconOpen.style.display = open ? 'none' : 'block';
+      menuIconClose.style.display = open ? 'block' : 'none';
+      document.body.style.overflow = open ? 'hidden' : '';
     }
 
-    sidebarToggleBtn.addEventListener('click', (e) => {
+    mobileMenuBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      setSidebar(!sidebar.classList.contains('open'));
+      setMobileMenu(!mobileDrawer.classList.contains('open'));
     });
 
-    sidebar.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => setSidebar(false));
+    mobileBackdrop.addEventListener('click', () => setMobileMenu(false));
+
+    mobileDrawer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => setMobileMenu(false));
     });
 
-    document.addEventListener('click', (e) => {
-      if (sidebar.classList.contains('open') &&
-        !sidebar.contains(e.target) &&
-        !sidebarToggleBtn.contains(e.target)) {
-        setSidebar(false);
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 960 && mobileDrawer.classList.contains('open')) {
+        setMobileMenu(false);
       }
     });
 
+    /* Active Section Scroll Spy for Local Sections */
+    const sections = document.querySelectorAll('section[id]');
+    const localNavLinks = document.querySelectorAll('#desktop-nav a[href^="#"], #mobile-drawer a[href^="#"]');
+
+    function updateActiveNav() {
+      const scrollPos = window.scrollY + 120;
+      let currentId = '';
+
+      sections.forEach(sec => {
+        if (scrollPos >= sec.offsetTop && scrollPos < sec.offsetTop + sec.offsetHeight) {
+          currentId = sec.getAttribute('id');
+        }
+      });
+
+      if (currentId) {
+        localNavLinks.forEach(link => {
+          const href = link.getAttribute('href').replace('#', '');
+          link.classList.toggle('active', href === currentId);
+        });
+      }
+    }
+
+    window.addEventListener('scroll', updateActiveNav, { passive: true });
+    updateActiveNav();
+
     /* Dark Mode Toggle (shared with the main page) */
-    const themeCheckbox = document.getElementById('theme-checkbox');
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
     const htmlEl = document.documentElement;
     const savedTheme = localStorage.getItem('site-theme') || 'light';
     htmlEl.setAttribute('data-theme', savedTheme);
-    themeCheckbox.checked = (savedTheme === 'dark');
 
-    themeCheckbox.addEventListener('change', () => {
-      const theme = themeCheckbox.checked ? 'dark' : 'light';
-      htmlEl.setAttribute('data-theme', theme);
-      localStorage.setItem('site-theme', theme);
+    themeToggleBtn.addEventListener('click', () => {
+      const current = htmlEl.getAttribute('data-theme');
+      const nextTheme = current === 'dark' ? 'light' : 'dark';
+      htmlEl.setAttribute('data-theme', nextTheme);
+      localStorage.setItem('site-theme', nextTheme);
     });
 
     /* Scroll reveal */
